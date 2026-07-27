@@ -79,6 +79,7 @@
             <div id="finalRanking" class="final-ranking"></div>
             <div id="finalStats" class="stats-grid"></div>
             <p id="aiStatus" class="ai-status"></p>
+            <button id="showGeneratedCardsBtn" class="primary generated-cards-btn hidden">Mostrar nuevas cartas</button>
           </div>
         </section>
       </div>
@@ -161,6 +162,22 @@
       <select id="surveyRating"><option value="">Puntuación</option><option value="1">1 — Floja</option><option value="2">2</option><option value="3">3 — Bien</option><option value="4">4</option><option value="5">5 — Muy buena</option></select>
       <p id="surveyError" class="error"></p>
       <button id="submitSurveyBtn" class="primary">Enviar encuesta</button>
+    </section>
+  </div>
+
+
+  <div id="generatedCardsModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="generatedCardsTitle">
+    <section class="modal panel generated-modal">
+      <button class="modal-close" data-close="generatedCardsModal" aria-label="Cerrar">×</button>
+      <div class="generated-heading">
+        <span class="sparkle">✦</span>
+        <div><h2 id="generatedCardsTitle">Nuevas cartas creadas</h2><p>Estas cartas ya se han guardado y añadido al mazo general.</p></div>
+      </div>
+      <div class="generated-summary" id="generatedSummary"></div>
+      <div class="generated-columns">
+        <section><h3>Cartas negras</h3><div id="generatedBlackCards" class="generated-list"></div></section>
+        <section><h3>Cartas blancas</h3><div id="generatedWhiteCards" class="generated-list"></div></section>
+      </div>
     </section>
   </div>
 

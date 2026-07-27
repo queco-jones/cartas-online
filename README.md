@@ -84,3 +84,41 @@ Las cartas generadas se guardan en `custom-cards.json` y se incorporan inmediata
 
 - **Original:** un jugador actúa como juez y elige la mejor respuesta anónima.
 - **Modo Caos:** todos envían respuesta. Cuando todos terminan, las respuestas se muestran mezcladas y sin autor. Cada jugador vota una respuesta que no sea la suya. Si la primera posición queda empatada, nadie gana el punto. Los autores se revelan al cerrar la ronda.
+
+## Versión 10 — cartas generadas y selectores personalizados
+
+- Cuando la IA termina, aparece el botón **Mostrar nuevas cartas** en la pantalla final.
+- El botón abre una ventana con las 8 cartas negras y 16 blancas generadas en esa partida.
+- Las cartas mostradas ya están guardadas en `custom-cards.json` y cargadas en el mazo.
+- Todos los desplegables de la interfaz usan ahora un selector personalizado adaptado al diseño claro y oscuro.
+
+
+## Cartas generadas por IA
+
+Las cartas generadas al terminar una partida se incorporan directamente al mazo general persistente:
+
+- Con `DATA_DIR=/var/data`: `/var/data/cards.json`
+- En local sin `DATA_DIR`: `cards.json` del proyecto
+
+Además, `ai-generated-cards.json` conserva únicamente la lista de cartas creadas por IA para poder darles prioridad sin duplicarlas físicamente en las manos.
+
+Las cartas de IA tienen por defecto peso 4 frente al peso 1 de una carta normal. Esto hace que tiendan a aparecer antes en los mazos barajados, manteniendo cada carta una sola vez por ciclo. El peso puede cambiarse con la variable `AI_CARD_WEIGHT`, entre 2 y 8.
+
+## Guardado permanente gratuito mediante GitHub
+
+Esta versión guarda las cartas generadas por IA directamente en el `cards.json` del repositorio de GitHub. El commit provoca automáticamente un nuevo despliegue en Render cuando el servicio está conectado al repositorio.
+
+Configura estas variables en **Render → Environment**:
+
+```text
+GITHUB_TOKEN=tu_token
+GITHUB_REPOSITORY=usuario/nombre-del-repositorio
+GITHUB_BRANCH=main
+GITHUB_CARDS_PATH=cards.json
+```
+
+`GITHUB_BRANCH` y `GITHUB_CARDS_PATH` pueden omitirse si la rama es `main` y el archivo está en la raíz.
+
+El token recomendado es un **fine-grained personal access token** limitado únicamente a este repositorio y con el permiso **Contents: Read and write**. No escribas el token dentro del código ni lo subas a GitHub.
+
+Las cartas generadas también quedan registradas dentro del propio `cards.json`, en `_aiGenerated`, para que sigan teniendo la prioridad configurada con `AI_CARD_WEIGHT` después de cada nuevo despliegue.

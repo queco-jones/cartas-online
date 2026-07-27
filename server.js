@@ -9,12 +9,19 @@ const server = http.createServer(app);
 const io = new Server(server);
 const PORT = process.env.PORT || 3000;
 const DATA_DIR = process.env.DATA_DIR || __dirname;
-const BASE_PATH = path.join(__dirname, 'cards.json');
+const BUNDLED_BASE_PATH = path.join(__dirname, 'cards.json');
+const BASE_PATH = path.join(DATA_DIR, 'cards.json');
+const AI_CARDS_PATH = path.join(DATA_DIR, 'ai-generated-cards.json');
+const AI_CARD_WEIGHT = Math.max(2, Math.min(8, Number.parseInt(process.env.AI_CARD_WEIGHT, 10) || 4));
 const CUSTOM_PATH = path.join(DATA_DIR, 'custom-cards.json');
 const FLAGGED_PATH = path.join(DATA_DIR, 'flagged-cards.json');
 const DELETED_PATH = path.join(DATA_DIR, 'deleted-cards.json');
 const ANALYTICS_PATH = path.join(DATA_DIR, 'game-analytics.json');
 const AI_MODEL = process.env.OPENAI_MODEL || 'gpt-5-mini';
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
+const GITHUB_REPOSITORY = process.env.GITHUB_REPOSITORY || '';
+const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
+const GITHUB_CARDS_PATH = process.env.GITHUB_CARDS_PATH || 'cards.json';
 
 function readJson(file, fallback) { try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return fallback; } }
 function writeJson(file, value) { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, JSON.stringify(value, null, 2), 'utf8'); }
@@ -31,15 +38,26 @@ function normalizeBlack(deck) {
   return out;
 }
 
+if (!fs.existsSync(BASE_PATH)) {
+  const bundled = readJson(BUNDLED_BASE_PATH, { black: [], white: [] });
+  writeJson(BASE_PATH, bundled);
+}
 let custom = readJson(CUSTOM_PATH, { black: [], white: [] });
+let aiGenerated = readJson(AI_CARDS_PATH, { black: [], white: [] });
 let flagged = readJson(FLAGGED_PATH, []);
 let deleted = readJson(DELETED_PATH, { black: [], white: [] });
 let analytics = readJson(ANALYTICS_PATH, { games: [] });
 let cards;
+let aiBlackTexts = new Set();
+let aiWhiteTexts = new Set();
 function reloadCards() {
-  const base = readJson(BASE_PATH, { black: [], white: [] });
+  const base = readJson(BASE_PATH, readJson(BUNDLED_BASE_PATH, { black: [], white: [] }));
   custom = readJson(CUSTOM_PATH, custom || { black: [], white: [] });
+  aiGenerated = readJson(AI_CARDS_PATH, aiGenerated || { black: [], white: [] });
   deleted = readJson(DELETED_PATH, deleted || { black: [], white: [] });
+  const embeddedAi = base._aiGenerated || {};
+  aiBlackTexts = new Set(normalizeBlack([...(embeddedAi.black || []), ...(aiGenerated.black || [])]).map(c => c.text));
+  aiWhiteTexts = new Set(normalizeWhite([...(embeddedAi.white || []), ...(aiGenerated.white || [])]));
   const deletedBlack = new Set(normalizeWhite(deleted.black));
   const deletedWhite = new Set(normalizeWhite(deleted.white));
   cards = {
@@ -56,6 +74,14 @@ const rooms = new Map();
 const activeProfiles = new Map();
 const HUMOR_GENRES = ['absurdo','negro','sexual','político','cotidiano','surrealista','incómodo','referencia cultural'];
 function shuffle(a) { const x=[...a]; for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];} return x; }
+function weightedShuffle(items, weightFor) {
+  return [...items].map(item => ({ item, key: Math.pow(Math.random(), 1 / Math.max(1, weightFor(item))) }))
+    .sort((a,b)=>a.key-b.key).map(entry=>entry.item);
+}
+function isAiBlack(card){return aiBlackTexts.has(card.text);}
+function isAiWhite(card){return aiWhiteTexts.has(card);}
+function makeBlackDeck(room){return weightedShuffle(cards.black.filter(c=>!room.removedBlack.has(c.text)),c=>isAiBlack(c)?AI_CARD_WEIGHT:1);}
+function makeWhiteDeck(room){return weightedShuffle(cards.white.filter(c=>!room.removedWhite.has(c)),c=>isAiWhite(c)?AI_CARD_WEIGHT:1);}
 function makeRoomCode(){const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';let c;do{c=Array.from({length:4},()=>chars[Math.floor(Math.random()*chars.length)]).join('');}while(rooms.has(c));return c;}
 function sanitizeName(v){return String(v||'').trim().slice(0,24)||'Jugador';}
 function sanitizeAvatar(v){v=String(v||'');return /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(v)&&v.length<=180000?v:'';}
@@ -63,9 +89,9 @@ function sanitizeKey(v){v=String(v||'').trim();return /^[a-zA-Z0-9_-]{12,80}$/.t
 function sanitizeRounds(v){return Math.max(3,Math.min(50,Number.parseInt(v,10)||10));}
 function sanitizeGameMode(v){return v==='chaos'?'chaos':'original';}
 function getRoom(socket){return socket.data.roomCode?rooms.get(socket.data.roomCode):null;}
-function refillHand(room,p){while(p.hand.length<10){if(!room.whiteDeck.length)room.whiteDeck=shuffle(cards.white.filter(c=>!room.removedWhite.has(c))); if(!room.whiteDeck.length)break; p.hand.push(room.whiteDeck.pop());}}
+function refillHand(room,p){while(p.hand.length<10){if(!room.whiteDeck.length)room.whiteDeck=makeWhiteDeck(room); if(!room.whiteDeck.length)break; p.hand.push(room.whiteDeck.pop());}}
 function restoreSubmissions(room){for(const s of room.submissions){const p=room.players.find(x=>x.id===s.playerId);if(p)p.hand.push(...s.cards.filter(c=>!room.removedWhite.has(c)));}room.submissions=[];for(const p of room.players)refillHand(room,p);}
-function drawBlack(room){if(!room.blackDeck.length)room.blackDeck=shuffle(cards.black.filter(c=>!room.removedBlack.has(c.text)));return room.blackDeck.pop()||{text:'Sin preguntas disponibles.',pick:1};}
+function drawBlack(room){if(!room.blackDeck.length)room.blackDeck=makeBlackDeck(room);return room.blackDeck.pop()||{text:'Sin preguntas disponibles.',pick:1};}
 function resetStats(room){room.stats={whiteUses:{},winningWhiteUses:{},blackUses:{},genres:{},ratings:[],rounds:[]};}
 function count(map,key,n=1){map[key]=(map[key]||0)+n;}
 function startRound(room){room.phase='playing';room.submissions=[];room.roundVotes={};room.roundWinnerId=null;room.winningCards=null;room.roundTie=false;room.surveys={};room.currentBlack=drawBlack(room);count(room.stats.blackUses,room.currentBlack.text);for(const p of room.players)refillHand(room,p);}
@@ -107,6 +133,58 @@ function claim(socket,key){key=sanitizeKey(key);if(!key)return null;const old=ac
 function persistFlag(type,text){if(!flagged.some(x=>x.type===type&&x.text===text)){flagged.push({type,text,reportedAt:new Date().toISOString()});writeJson(FLAGGED_PATH,flagged);}}
 function removeFromRoom(room,type,text){if(type==='black'){room.removedBlack.add(text);room.blackDeck=room.blackDeck.filter(c=>c.text!==text);if(room.currentBlack?.text===text){restoreSubmissions(room);room.currentBlack=drawBlack(room);room.phase='playing';room.roundWinnerId=null;room.winningCards=null;}}else{room.removedWhite.add(text);room.whiteDeck=room.whiteDeck.filter(c=>c!==text);for(const p of room.players){p.hand=p.hand.filter(c=>c!==text);refillHand(room,p);}room.submissions=room.submissions.map(s=>({...s,cards:s.cards.filter(c=>c!==text)})).filter(s=>s.cards.length===(room.currentBlack?.pick||1));if(['judging','voting'].includes(room.phase)&&room.submissions.length<expectedSubmissions(room))room.phase='playing';}}
 function resolveVote(room){const needed=Math.floor(room.players.length/2)+1;if(room.vote.yes.size>=needed){removeFromRoom(room,room.vote.type,room.vote.text);persistFlag(room.vote.type,room.vote.text);io.to(room.code).emit('toast','La carta se ha retirado de esta partida.');room.vote=null;}else if(room.vote.no.size>=needed||room.vote.yes.size+room.vote.no.size>=room.players.length){io.to(room.code).emit('toast','La votación no ha salido adelante.');room.vote=null;}emitRoom(room);}
+
+function githubHeaders() {
+  return {
+    Accept: 'application/vnd.github+json',
+    Authorization: `Bearer ${GITHUB_TOKEN}`,
+    'X-GitHub-Api-Version': '2022-11-28',
+    'User-Agent': 'cartas-online-server'
+  };
+}
+function githubContentsUrl() {
+  const [owner, repo] = GITHUB_REPOSITORY.split('/');
+  if (!owner || !repo) throw new Error('GITHUB_REPOSITORY debe tener el formato usuario/repositorio.');
+  const encodedPath = GITHUB_CARDS_PATH.split('/').map(encodeURIComponent).join('/');
+  return `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${encodedPath}`;
+}
+async function saveCardsPermanentlyOnGithub(newBlack, newWhite) {
+  if (!GITHUB_TOKEN || !GITHUB_REPOSITORY) {
+    throw new Error('Falta configurar GITHUB_TOKEN y GITHUB_REPOSITORY en Render.');
+  }
+  const url = githubContentsUrl();
+  const getResponse = await fetch(`${url}?ref=${encodeURIComponent(GITHUB_BRANCH)}`, { headers: githubHeaders() });
+  if (!getResponse.ok) {
+    const body = await getResponse.text();
+    throw new Error(`GitHub no pudo leer ${GITHUB_CARDS_PATH} (${getResponse.status}): ${body.slice(0, 300)}`);
+  }
+  const currentFile = await getResponse.json();
+  const currentText = Buffer.from(String(currentFile.content || '').replace(/\n/g, ''), 'base64').toString('utf8');
+  const current = JSON.parse(currentText);
+  current.black = normalizeBlack([...(current.black || []), ...newBlack]);
+  current.white = normalizeWhite([...(current.white || []), ...newWhite]);
+  current._aiGenerated = {
+    black: normalizeBlack([...(current._aiGenerated?.black || []), ...newBlack]),
+    white: normalizeWhite([...(current._aiGenerated?.white || []), ...newWhite])
+  };
+  const content = Buffer.from(`${JSON.stringify(current, null, 2)}\n`, 'utf8').toString('base64');
+  const putResponse = await fetch(url, {
+    method: 'PUT',
+    headers: { ...githubHeaders(), 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: `Añadir ${newBlack.length + newWhite.length} cartas generadas por IA`,
+      content,
+      sha: currentFile.sha,
+      branch: GITHUB_BRANCH
+    })
+  });
+  if (!putResponse.ok) {
+    const body = await putResponse.text();
+    throw new Error(`GitHub no pudo actualizar ${GITHUB_CARDS_PATH} (${putResponse.status}): ${body.slice(0, 300)}`);
+  }
+  return current;
+}
+
 function persistGame(room){analytics.games.push({endedAt:new Date().toISOString(),roomCode:room.code,summary:buildSummary(room),stats:room.stats});analytics.games=analytics.games.slice(-100);writeJson(ANALYTICS_PATH,analytics);}
 async function generateAiCards(room){
   if(!process.env.OPENAI_API_KEY){console.warn('[IA] OPENAI_API_KEY no configurada.');room.aiStatus='disabled';emitRoom(room);return;}
@@ -137,10 +215,24 @@ async function generateAiCards(room){
     const generated=JSON.parse(raw);
     const newBlack=normalizeBlack(generated.black||[]);const newWhite=normalizeWhite(generated.white||[]);
     if(newBlack.length!==8||newWhite.length!==16)throw new Error(`Cantidad incorrecta: ${newBlack.length} negras y ${newWhite.length} blancas.`);
-    custom.black=normalizeBlack([...(custom.black||[]),...newBlack]);custom.white=normalizeWhite([...(custom.white||[]),...newWhite]);
-    writeJson(CUSTOM_PATH,custom);reloadCards();
-    room.generatedCards={black:newBlack.length,white:newWhite.length};room.aiStatus='done';
-    console.log(`[IA] Generación completada para ${room.code}: ${newBlack.length} negras y ${newWhite.length} blancas.`);
+    const general=readJson(BASE_PATH,readJson(BUNDLED_BASE_PATH,{black:[],white:[]}));
+    general.black=normalizeBlack([...(general.black||[]),...newBlack]);
+    general.white=normalizeWhite([...(general.white||[]),...newWhite]);
+    general._aiGenerated={
+      black:normalizeBlack([...(general._aiGenerated?.black||[]),...newBlack]),
+      white:normalizeWhite([...(general._aiGenerated?.white||[]),...newWhite])
+    };
+    writeJson(BASE_PATH,general);
+    aiGenerated.black=normalizeBlack([...(aiGenerated.black||[]),...newBlack]);
+    aiGenerated.white=normalizeWhite([...(aiGenerated.white||[]),...newWhite]);
+    writeJson(AI_CARDS_PATH,aiGenerated);
+    reloadCards();
+    room.generatedCards={black:newBlack.map(c=>({text:c.text,pick:c.pick})),white:[...newWhite]};
+    room.aiStatus='saving';emitRoom(room);
+    console.log(`[GitHub] Guardando cartas de la sala ${room.code} en ${GITHUB_REPOSITORY}/${GITHUB_CARDS_PATH}...`);
+    await saveCardsPermanentlyOnGithub(newBlack,newWhite);
+    room.aiStatus='done';
+    console.log(`[IA] Generación completada y guardada en GitHub para ${room.code}: ${newBlack.length} negras y ${newWhite.length} blancas.`);
   }catch(error){
     const details=error?.response?.data||error?.error||error?.message||String(error);
     console.error('[IA] Error generando cartas:',details);
@@ -149,20 +241,20 @@ async function generateAiCards(room){
   emitRoom(room);
 }
 function finishGame(room){room.phase='game-over';room.generatedCards=null;room.aiStatus='idle';persistGame(room);emitRoom(room);generateAiCards(room);}
-function createRoomObject(code,socket,key,name,avatar,maxRounds,gameMode){const room={code,hostId:socket.id,players:[{id:socket.id,playerKey:key,name:sanitizeName(name),avatar:sanitizeAvatar(avatar),score:0,hand:[]}],started:false,phase:'lobby',gameMode:sanitizeGameMode(gameMode),judgeId:null,currentBlack:null,submissions:[],roundVotes:{},blackDeck:shuffle(cards.black),whiteDeck:shuffle(cards.white),roundWinnerId:null,winningCards:null,roundTie:false,removedBlack:new Set(),removedWhite:new Set(),vote:null,maxRounds:sanitizeRounds(maxRounds),roundNumber:0,surveys:{},generatedCards:null,aiStatus:'idle'};resetStats(room);return room;}
+function createRoomObject(code,socket,key,name,avatar,maxRounds,gameMode){const room={code,hostId:socket.id,players:[{id:socket.id,playerKey:key,name:sanitizeName(name),avatar:sanitizeAvatar(avatar),score:0,hand:[]}],started:false,phase:'lobby',gameMode:sanitizeGameMode(gameMode),judgeId:null,currentBlack:null,submissions:[],roundVotes:{},blackDeck:[],whiteDeck:[],roundWinnerId:null,winningCards:null,roundTie:false,removedBlack:new Set(),removedWhite:new Set(),vote:null,maxRounds:sanitizeRounds(maxRounds),roundNumber:0,surveys:{},generatedCards:null,aiStatus:'idle'};resetStats(room);return room;}
 
 io.on('connection',socket=>{
   socket.on('create-room',({name,avatar,playerKey,maxRounds,gameMode},cb)=>{const key=claim(socket,playerKey);if(!key)return cb?.({ok:false,error:'No se pudo identificar este navegador.'});leaveRoom(socket);const code=makeRoomCode();const room=createRoomObject(code,socket,key,name,avatar,maxRounds,gameMode);rooms.set(code,room);socket.join(code);socket.data.roomCode=code;cb?.({ok:true,code});emitRoom(room);});
   socket.on('join-room',({code,name,avatar,playerKey},cb)=>{code=String(code||'').trim().toUpperCase();const room=rooms.get(code);if(!room)return cb?.({ok:false,error:'La sala no existe.'});if(room.started&&room.phase!=='game-over')return cb?.({ok:false,error:'La partida ya ha empezado.'});const key=claim(socket,playerKey);if(!key)return cb?.({ok:false,error:'No se pudo identificar este navegador.'});leaveRoom(socket);if(room.players.length>=12)return cb?.({ok:false,error:'La sala está llena.'});room.players.push({id:socket.id,playerKey:key,name:sanitizeName(name),avatar:sanitizeAvatar(avatar),score:0,hand:[]});socket.join(code);socket.data.roomCode=code;cb?.({ok:true,code});emitRoom(room);});
   socket.on('update-profile',({name,avatar},cb)=>{const room=getRoom(socket),p=room?.players.find(x=>x.id===socket.id);if(!p)return cb?.({ok:false,error:'No estás en una sala.'});p.name=sanitizeName(name);p.avatar=sanitizeAvatar(avatar);cb?.({ok:true});emitRoom(room);});
   socket.on('leave-room',(_d,cb)=>{leaveRoom(socket);cb?.({ok:true});});
-  socket.on('start-game',(_d,cb)=>{const room=getRoom(socket);if(!room)return cb?.({ok:false,error:'Sala no encontrada.'});if(room.hostId!==socket.id)return cb?.({ok:false,error:'Solo puede iniciar el anfitrión.'});if(room.players.length<3)return cb?.({ok:false,error:'Se necesitan al menos 3 jugadores.'});room.started=true;room.roundNumber=1;room.players.forEach(p=>{p.score=0;p.hand=[];});room.blackDeck=shuffle(cards.black.filter(c=>!room.removedBlack.has(c.text)));room.whiteDeck=shuffle(cards.white.filter(c=>!room.removedWhite.has(c)));resetStats(room);room.judgeId=room.gameMode==='original'?room.players[0].id:null;startRound(room);cb?.({ok:true});emitRoom(room);});
+  socket.on('start-game',(_d,cb)=>{const room=getRoom(socket);if(!room)return cb?.({ok:false,error:'Sala no encontrada.'});if(room.hostId!==socket.id)return cb?.({ok:false,error:'Solo puede iniciar el anfitrión.'});if(room.players.length<3)return cb?.({ok:false,error:'Se necesitan al menos 3 jugadores.'});room.started=true;room.roundNumber=1;room.players.forEach(p=>{p.score=0;p.hand=[];});room.blackDeck=makeBlackDeck(room);room.whiteDeck=makeWhiteDeck(room);resetStats(room);room.judgeId=room.gameMode==='original'?room.players[0].id:null;startRound(room);cb?.({ok:true});emitRoom(room);});
   socket.on('play-card',({cardIndices},cb)=>{const room=getRoom(socket);if(!room||room.phase!=='playing')return cb?.({ok:false,error:'No puedes jugar ahora.'});if(room.gameMode==='original'&&room.judgeId===socket.id)return cb?.({ok:false,error:'El juez no juega.'});if(room.submissions.some(s=>s.playerId===socket.id))return cb?.({ok:false,error:'Ya has jugado.'});const p=room.players.find(x=>x.id===socket.id),required=room.currentBlack?.pick||1,idx=[...new Set((Array.isArray(cardIndices)?cardIndices:[]).map(Number))];if(!p||idx.length!==required||idx.some(i=>!Number.isInteger(i)||i<0||i>=p.hand.length))return cb?.({ok:false,error:`Debes seleccionar exactamente ${required} carta${required===1?'':'s'}.`});const chosen=idx.map(i=>p.hand[i]);chosen.forEach(c=>count(room.stats.whiteUses,c));[...idx].sort((a,b)=>b-a).forEach(i=>p.hand.splice(i,1));room.submissions.push({id:`s-${Date.now()}-${Math.random().toString(36).slice(2)}`,playerId:socket.id,cards:chosen});refillHand(room,p);if(room.submissions.length===expectedSubmissions(room)){room.submissions=shuffle(room.submissions);room.phase=room.gameMode==='chaos'?'voting':'judging';}cb?.({ok:true});emitRoom(room);});
   socket.on('choose-winner',({submissionId},cb)=>{const room=getRoom(socket);if(!room||room.gameMode!=='original'||room.phase!=='judging'||room.judgeId!==socket.id)return cb?.({ok:false,error:'No puedes elegir ahora.'});const submission=room.submissions.find(x=>x.id===submissionId);if(!submission)return cb?.({ok:false,error:'Respuesta no válida.'});finishRound(room,submission,false);cb?.({ok:true});emitRoom(room);});
   socket.on('cast-round-vote',({submissionId},cb)=>{const room=getRoom(socket);if(!room||room.gameMode!=='chaos'||room.phase!=='voting')return cb?.({ok:false,error:'No hay una votación de ronda activa.'});const submission=room.submissions.find(s=>s.id===submissionId);if(!submission)return cb?.({ok:false,error:'Respuesta no válida.'});if(submission.playerId===socket.id)return cb?.({ok:false,error:'No puedes votar tu propia respuesta.'});if(room.roundVotes[socket.id])return cb?.({ok:false,error:'Ya has votado en esta ronda.'});room.roundVotes[socket.id]=submissionId;cb?.({ok:true});resolveChaosRound(room);emitRoom(room);});
   socket.on('submit-round-survey',({genre,rating},cb)=>{const room=getRoom(socket);if(!room||room.phase!=='round-survey')return cb?.({ok:false,error:'No hay encuesta activa.'});if(!surveyRequiredIds(room).includes(socket.id))return cb?.({ok:false,error:'Esta encuesta es para quienes jugaron esta ronda.'});genre=String(genre||'').toLowerCase();rating=Math.max(1,Math.min(5,Number(rating)||0));if(!HUMOR_GENRES.includes(genre)||!rating)return cb?.({ok:false,error:'Completa las dos preguntas.'});if(room.surveys[socket.id])return cb?.({ok:false,error:'Ya has respondido.'});room.surveys[socket.id]={genre,rating};count(room.stats.genres,genre);room.stats.ratings.push(rating);cb?.({ok:true});emitRoom(room);});
   socket.on('next-round',(_d,cb)=>{const room=getRoom(socket);if(!room||room.hostId!==socket.id||!['round-result','round-survey'].includes(room.phase))return cb?.({ok:false,error:'No puedes continuar ahora.'});const pending=room.phase==='round-survey'?surveyRequiredIds(room).filter(id=>!room.surveys[id]):[];if(pending.length)return cb?.({ok:false,error:`Faltan ${pending.length} encuesta${pending.length===1?'':'s'} por responder.`});if(room.roundNumber>=room.maxRounds){finishGame(room);return cb?.({ok:true,finished:true});}room.roundNumber++;if(room.gameMode==='original')advanceJudge(room);startRound(room);cb?.({ok:true});emitRoom(room);});
-  socket.on('play-again',(_d,cb)=>{const room=getRoom(socket);if(!room||room.hostId!==socket.id||room.phase!=='game-over')return cb?.({ok:false,error:'No puedes reiniciar ahora.'});room.started=true;room.roundNumber=1;room.players.forEach(p=>{p.score=0;p.hand=[];});room.blackDeck=shuffle(cards.black.filter(c=>!room.removedBlack.has(c.text)));room.whiteDeck=shuffle(cards.white.filter(c=>!room.removedWhite.has(c)));resetStats(room);room.judgeId=room.gameMode==='original'?(room.players[0]?.id||null):null;startRound(room);cb?.({ok:true});emitRoom(room);});
+  socket.on('play-again',(_d,cb)=>{const room=getRoom(socket);if(!room||room.hostId!==socket.id||room.phase!=='game-over')return cb?.({ok:false,error:'No puedes reiniciar ahora.'});room.started=true;room.roundNumber=1;room.players.forEach(p=>{p.score=0;p.hand=[];});room.blackDeck=makeBlackDeck(room);room.whiteDeck=makeWhiteDeck(room);resetStats(room);room.judgeId=room.gameMode==='original'?(room.players[0]?.id||null):null;startRound(room);cb?.({ok:true});emitRoom(room);});
   socket.on('start-delete-vote',({type,text},cb)=>{const room=getRoom(socket);type=type==='black'?'black':'white';text=String(text||'').trim();if(!room||!text)return cb?.({ok:false,error:'Carta no válida.'});if(room.vote)return cb?.({ok:false,error:'Ya hay una votación activa.'});const allowed=type==='black'?room.currentBlack?.text===text:room.players.some(p=>p.hand.includes(text))||room.submissions.some(s=>s.cards.includes(text));if(!allowed)return cb?.({ok:false,error:'Esa carta no está disponible para votar.'});room.vote={id:Date.now().toString(36),type,text,yes:new Set([socket.id]),no:new Set()};cb?.({ok:true});resolveVote(room);});
   socket.on('cast-delete-vote',({voteId,choice},cb)=>{const room=getRoom(socket);if(!room?.vote||room.vote.id!==voteId)return cb?.({ok:false,error:'La votación ya no está activa.'});room.vote.yes.delete(socket.id);room.vote.no.delete(socket.id);(choice==='yes'?room.vote.yes:room.vote.no).add(socket.id);cb?.({ok:true});resolveVote(room);});
   socket.on('add-custom-card',({type,text},cb)=>{type=type==='black'?'black':'white';text=String(text||'').trim().slice(0,300);if(!text)return cb?.({ok:false,error:'Escribe el texto de la carta.'});if(type==='black'){const pick=(text.match(/____/g)||[]).length||1;custom.black=normalizeBlack([...(custom.black||[]),{text,pick}]);}else custom.white=normalizeWhite([...(custom.white||[]),text]);writeJson(CUSTOM_PATH,custom);reloadCards();for(const room of rooms.values()){if(type==='black')room.blackDeck.push(...cards.black.filter(c=>c.text===text));else room.whiteDeck.push(text);emitRoom(room);}cb?.({ok:true,stats:{black:cards.black.length,white:cards.white.length}});});
