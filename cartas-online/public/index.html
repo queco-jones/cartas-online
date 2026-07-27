@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartas contra tus amigos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="themeBtn" class="theme-btn" aria-label="Cambiar tema">Modo oscuro</button>
+
+  <main class="container">
+    <section id="home" class="panel home-panel">
+      <h1>Cartas contra tus amigos</h1>
+      <p class="subtitle">Crea una sala privada y juega desde el navegador.</p>
+      <div id="homeProfile" class="profile-editor"></div>
+      <label for="maxRounds">Rondas de la partida</label>
+      <select id="maxRounds"><option value="5">5 rondas</option><option value="10" selected>10 rondas</option><option value="15">15 rondas</option><option value="20">20 rondas</option><option value="30">30 rondas</option></select>
+      <button id="createBtn" class="primary">Crear partida</button>
+      <div class="home-tools"><button id="createCardsBtn" class="secondary">Crear cartas</button><button id="controlBtn" class="secondary">Control</button></div>
+      <div class="divider"><span>o</span></div>
+      <label for="roomCode">Código de sala</label>
+      <div class="join-row">
+        <input id="roomCode" maxlength="4" placeholder="ABCD" autocomplete="off" />
+        <button id="joinBtn">Entrar</button>
+      </div>
+      <p id="homeError" class="error"></p>
+    </section>
+
+    <section id="game" class="hidden">
+      <header class="topbar">
+        <div><span class="muted">Sala</span><strong id="codeText"></strong><span id="roundProgress" class="round-progress"></span></div>
+        <div class="top-actions">
+          <button id="profileBtn" class="small">Mi perfil</button>
+          <button id="voteMenuBtn" class="small">Votar carta</button>
+          <button id="copyBtn" class="small">Copiar código</button>
+          <button id="leaveBtn" class="small danger">Salir</button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="panel players-panel">
+          <h2>Jugadores</h2>
+          <div id="players"></div>
+          <button id="startBtn" class="primary hidden">Empezar partida</button>
+          <button id="nextBtn" class="primary hidden">Siguiente ronda</button>
+          <button id="playAgainBtn" class="primary hidden">Volver a jugar</button>
+          <p id="gameError" class="error"></p>
+        </aside>
+
+        <section class="game-area">
+          <div id="lobby" class="panel center-panel">
+            <h2>Esperando jugadores</h2>
+            <p>Comparte el código de sala. Se necesitan al menos 3 jugadores.</p>
+            <p id="deckStats" class="deck-stats"></p>
+          </div>
+          <div id="round" class="hidden">
+            <div class="black-card" id="blackCard"></div>
+            <p id="statusText" class="status"></p>
+            <div id="submissions" class="cards-grid"></div>
+            <div id="hand" class="cards-grid"></div>
+            <div id="confirmArea" class="confirm-area hidden">
+              <button id="confirmBtn" class="primary confirm-btn" disabled>Confirmar carta</button>
+              <button id="cancelBtn" class="secondary">Cancelar selección</button>
+            </div>
+          </div>
+          <div id="gameOver" class="panel hidden">
+            <h2 class="final-title">Partida terminada</h2>
+            <div id="podium" class="podium"></div>
+            <div id="finalRanking" class="final-ranking"></div>
+            <div id="finalStats" class="stats-grid"></div>
+            <p id="aiStatus" class="ai-status"></p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="profileModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+    <section class="modal panel">
+      <button id="closeProfileBtn" class="modal-close" aria-label="Cerrar">×</button>
+      <h2 id="profileTitle">Mi perfil</h2>
+      <div class="profile-editor">
+        <button id="avatarPicker" class="avatar-picker" type="button" aria-label="Elegir foto de perfil">
+          <img id="avatarPreview" alt="Foto de perfil" class="hidden" />
+          <span id="avatarInitial">?</span><span class="avatar-edit">✎</span>
+        </button>
+        <div class="profile-fields">
+          <label for="name">Tu nombre</label>
+          <input id="name" maxlength="24" placeholder="Escribe tu nombre" autocomplete="nickname" />
+          <small>Se guarda automáticamente en este navegador.</small>
+        </div>
+        <input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" />
+      </div>
+      <p id="profileError" class="error"></p>
+      <button id="saveProfileBtn" class="primary">Guardar</button>
+    </section>
+  </div>
+
+
+  <div id="cardCreatorModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <section class="modal panel wide-modal">
+      <button class="modal-close" data-close="cardCreatorModal">×</button>
+      <h2>Crear cartas</h2>
+      <label for="customCardType">Tipo de carta</label>
+      <select id="customCardType"><option value="white">Blanca</option><option value="black">Negra</option></select>
+      <label for="customCardText">Texto</label>
+      <textarea id="customCardText" maxlength="300" rows="5" placeholder="Usa ____ para cada hueco de una carta negra."></textarea>
+      <p class="muted">Las cartas nuevas se añaden al mazo general.</p>
+      <p id="creatorError" class="error"></p>
+      <button id="saveCustomCardBtn" class="primary">Guardar carta</button>
+    </section>
+  </div>
+
+  <div id="voteModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <section class="modal panel wide-modal">
+      <button class="modal-close" data-close="voteModal">×</button>
+      <h2>Votar para retirar una carta</h2>
+      <p class="muted">La carta aprobada desaparecerá solo de esta sala y será reemplazada. Después aparecerá en Control.</p>
+      <div id="voteCandidates" class="vote-candidates"></div>
+      <p id="voteError" class="error"></p>
+    </section>
+  </div>
+
+  <div id="activeVoteModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <section class="modal panel">
+      <h2>Votación activa</h2>
+      <div id="activeVoteCard" class="mini-card"></div>
+      <p id="activeVoteCount"></p>
+      <div class="vote-actions"><button id="voteYesBtn" class="primary">Sí, retirarla</button><button id="voteNoBtn" class="secondary">No</button></div>
+    </section>
+  </div>
+
+  <div id="controlModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <section class="modal panel wide-modal">
+      <button class="modal-close" data-close="controlModal">×</button>
+      <h2>Control de cartas</h2>
+      <p id="controlStats" class="deck-stats"></p>
+      <h3>Cartas retiradas por votación</h3>
+      <div id="flaggedCards" class="control-list"></div>
+      <p id="controlError" class="error"></p>
+    </section>
+  </div>
+
+  <div id="surveyModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <section class="modal panel">
+      <h2>Encuesta rápida de la ronda</h2>
+      <p class="muted">Necesitamos estas dos respuestas para conocer vuestro tipo de humor.</p>
+      <label for="surveyGenre">¿Qué tipo de humor tenía tu respuesta?</label>
+      <select id="surveyGenre"><option value="">Selecciona uno</option><option value="absurdo">Absurdo</option><option value="negro">Negro</option><option value="sexual">Sexual</option><option value="político">Político</option><option value="cotidiano">Cotidiano</option><option value="surrealista">Surrealista</option><option value="incómodo">Incómodo</option><option value="referencia cultural">Referencia cultural</option></select>
+      <label for="surveyRating">¿Qué tal ha sido esta ronda?</label>
+      <select id="surveyRating"><option value="">Puntuación</option><option value="1">1 — Floja</option><option value="2">2</option><option value="3">3 — Bien</option><option value="4">4</option><option value="5">5 — Muy buena</option></select>
+      <p id="surveyError" class="error"></p>
+      <button id="submitSurveyBtn" class="primary">Enviar encuesta</button>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
