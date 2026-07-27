@@ -13,43 +13,24 @@
     <section id="home" class="panel home-panel">
       <h1>Cartas contra tus amigos</h1>
       <p class="subtitle">Crea una sala privada y juega desde el navegador.</p>
-
-      <div class="profile-editor">
-        <button id="avatarPicker" class="avatar-picker" type="button" aria-label="Elegir foto de perfil">
-          <img id="avatarPreview" alt="Foto de perfil" class="hidden" />
-          <span id="avatarInitial">?</span>
-          <span class="avatar-edit">✎</span>
-        </button>
-        <div class="profile-fields">
-          <label for="name">Tu nombre</label>
-          <input id="name" maxlength="24" placeholder="Escribe tu nombre" autocomplete="nickname" />
-          <small>El perfil se guarda automáticamente en este navegador.</small>
-        </div>
-        <input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" />
-      </div>
-
+      <div id="homeProfile" class="profile-editor"></div>
       <button id="createBtn" class="primary">Crear partida</button>
-
       <div class="divider"><span>o</span></div>
-
       <label for="roomCode">Código de sala</label>
       <div class="join-row">
         <input id="roomCode" maxlength="4" placeholder="ABCD" autocomplete="off" />
         <button id="joinBtn">Entrar</button>
       </div>
-
       <p id="homeError" class="error"></p>
     </section>
 
     <section id="game" class="hidden">
       <header class="topbar">
-        <div>
-          <span class="muted">Sala</span>
-          <strong id="codeText"></strong>
-        </div>
+        <div><span class="muted">Sala</span><strong id="codeText"></strong></div>
         <div class="top-actions">
           <button id="profileBtn" class="small">Mi perfil</button>
           <button id="copyBtn" class="small">Copiar código</button>
+          <button id="leaveBtn" class="small danger">Salir</button>
         </div>
       </header>
 
@@ -68,7 +49,6 @@
             <p>Comparte el código de sala. Se necesitan al menos 3 jugadores.</p>
             <p id="deckStats" class="deck-stats"></p>
           </div>
-
           <div id="round" class="hidden">
             <div class="black-card" id="blackCard"></div>
             <p id="statusText" class="status"></p>
@@ -83,6 +63,27 @@
       </div>
     </section>
   </main>
+
+  <div id="profileModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+    <section class="modal panel">
+      <button id="closeProfileBtn" class="modal-close" aria-label="Cerrar">×</button>
+      <h2 id="profileTitle">Mi perfil</h2>
+      <div class="profile-editor">
+        <button id="avatarPicker" class="avatar-picker" type="button" aria-label="Elegir foto de perfil">
+          <img id="avatarPreview" alt="Foto de perfil" class="hidden" />
+          <span id="avatarInitial">?</span><span class="avatar-edit">✎</span>
+        </button>
+        <div class="profile-fields">
+          <label for="name">Tu nombre</label>
+          <input id="name" maxlength="24" placeholder="Escribe tu nombre" autocomplete="nickname" />
+          <small>Se guarda automáticamente en este navegador.</small>
+        </div>
+        <input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" />
+      </div>
+      <p id="profileError" class="error"></p>
+      <button id="saveProfileBtn" class="primary">Guardar</button>
+    </section>
+  </div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="game.js"></script>

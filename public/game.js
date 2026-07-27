@@ -5,17 +5,20 @@ const els = {
   name: document.getElementById('name'), roomCode: document.getElementById('roomCode'),
   createBtn: document.getElementById('createBtn'), joinBtn: document.getElementById('joinBtn'),
   homeError: document.getElementById('homeError'), codeText: document.getElementById('codeText'),
-  copyBtn: document.getElementById('copyBtn'), players: document.getElementById('players'),
-  startBtn: document.getElementById('startBtn'), nextBtn: document.getElementById('nextBtn'),
-  gameError: document.getElementById('gameError'), lobby: document.getElementById('lobby'),
-  round: document.getElementById('round'), blackCard: document.getElementById('blackCard'),
-  statusText: document.getElementById('statusText'), submissions: document.getElementById('submissions'),
-  hand: document.getElementById('hand'), confirmArea: document.getElementById('confirmArea'),
-  confirmBtn: document.getElementById('confirmBtn'), cancelBtn: document.getElementById('cancelBtn'),
-  themeBtn: document.getElementById('themeBtn'), deckStats: document.getElementById('deckStats'),
-  avatarPicker: document.getElementById('avatarPicker'), avatarInput: document.getElementById('avatarInput'),
-  avatarPreview: document.getElementById('avatarPreview'), avatarInitial: document.getElementById('avatarInitial'),
-  profileBtn: document.getElementById('profileBtn')
+  copyBtn: document.getElementById('copyBtn'), leaveBtn: document.getElementById('leaveBtn'),
+  players: document.getElementById('players'), startBtn: document.getElementById('startBtn'),
+  nextBtn: document.getElementById('nextBtn'), gameError: document.getElementById('gameError'),
+  lobby: document.getElementById('lobby'), round: document.getElementById('round'),
+  blackCard: document.getElementById('blackCard'), statusText: document.getElementById('statusText'),
+  submissions: document.getElementById('submissions'), hand: document.getElementById('hand'),
+  confirmArea: document.getElementById('confirmArea'), confirmBtn: document.getElementById('confirmBtn'),
+  cancelBtn: document.getElementById('cancelBtn'), themeBtn: document.getElementById('themeBtn'),
+  deckStats: document.getElementById('deckStats'), avatarPicker: document.getElementById('avatarPicker'),
+  avatarInput: document.getElementById('avatarInput'), avatarPreview: document.getElementById('avatarPreview'),
+  avatarInitial: document.getElementById('avatarInitial'), profileBtn: document.getElementById('profileBtn'),
+  profileModal: document.getElementById('profileModal'), closeProfileBtn: document.getElementById('closeProfileBtn'),
+  saveProfileBtn: document.getElementById('saveProfileBtn'), profileError: document.getElementById('profileError'),
+  homeProfile: document.getElementById('homeProfile')
 };
 
 let roomState = null;
@@ -26,7 +29,13 @@ let selectedSubmissionId = null;
 let lastPhase = null;
 
 const PROFILE_KEY = 'cartas-online-profile-v1';
+const PLAYER_KEY = 'cartas-online-player-key-v1';
 let profile = loadProfile();
+let playerKey = localStorage.getItem(PLAYER_KEY);
+if (!playerKey) {
+  playerKey = (crypto.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`).replace(/[^a-zA-Z0-9_-]/g, '');
+  localStorage.setItem(PLAYER_KEY, playerKey);
+}
 
 function loadProfile() {
   try {
@@ -37,10 +46,11 @@ function loadProfile() {
   }
 }
 
-function saveProfile() {
+function saveProfileLocal() {
   profile.name = els.name.value.trim().slice(0, 24);
   localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
   updateProfilePreview();
+  renderHomeProfile();
 }
 
 function updateProfilePreview() {
@@ -57,15 +67,66 @@ function updateProfilePreview() {
   }
 }
 
+function renderHomeProfile() {
+  els.homeProfile.innerHTML = '';
+  const avatar = document.createElement('div');
+  avatar.className = 'player-avatar home-avatar';
+  if (profile.avatar) {
+    const img = document.createElement('img');
+    img.src = profile.avatar;
+    img.alt = '';
+    avatar.appendChild(img);
+  } else {
+    avatar.textContent = (profile.name[0] || '?').toUpperCase();
+  }
+  const info = document.createElement('div');
+  info.className = 'profile-fields';
+  const label = document.createElement('strong');
+  label.textContent = profile.name || 'Configura tu perfil';
+  const text = document.createElement('small');
+  text.textContent = 'Nombre y foto guardados en este navegador.';
+  const button = document.createElement('button');
+  button.className = 'small';
+  button.textContent = profile.name ? 'Editar' : 'Crear perfil';
+  button.addEventListener('click', openProfileModal);
+  info.append(label, text);
+  els.homeProfile.append(avatar, info, button);
+}
+
+function openProfileModal() {
+  els.name.value = profile.name;
+  updateProfilePreview();
+  els.profileError.textContent = '';
+  els.profileModal.classList.remove('hidden');
+  setTimeout(() => els.name.focus(), 0);
+}
+
+function closeProfileModal() {
+  els.profileModal.classList.add('hidden');
+}
+
+function goHome(message = '') {
+  roomState = null;
+  privateState = { hand: [], isHost: false, isJudge: false };
+  selectedCardIndex = null;
+  selectedSubmissionId = null;
+  lastPhase = null;
+  els.game.classList.add('hidden');
+  els.home.classList.remove('hidden');
+  els.homeError.textContent = message;
+  renderHomeProfile();
+}
+
 els.name.value = profile.name;
 updateProfilePreview();
-els.name.addEventListener('input', saveProfile);
+renderHomeProfile();
+
 els.avatarPicker.addEventListener('click', () => els.avatarInput.click());
 els.avatarInput.addEventListener('change', () => {
   const file = els.avatarInput.files?.[0];
   if (!file) return;
   if (file.size > 2 * 1024 * 1024) {
-    els.homeError.textContent = 'La imagen debe pesar menos de 2 MB.';
+    els.profileError.textContent = 'La imagen debe pesar menos de 2 MB.';
     els.avatarInput.value = '';
     return;
   }
@@ -75,13 +136,15 @@ els.avatarInput.addEventListener('change', () => {
     img.onload = () => {
       const size = 160;
       const canvas = document.createElement('canvas');
-      canvas.width = size; canvas.height = size;
+      canvas.width = size;
+      canvas.height = size;
       const ctx = canvas.getContext('2d');
       const scale = Math.max(size / img.width, size / img.height);
-      const w = img.width * scale, h = img.height * scale;
+      const w = img.width * scale;
+      const h = img.height * scale;
       ctx.drawImage(img, (size - w) / 2, (size - h) / 2, w, h);
       profile.avatar = canvas.toDataURL('image/jpeg', 0.78);
-      saveProfile();
+      updateProfilePreview();
       els.avatarInput.value = '';
     };
     img.src = reader.result;
@@ -89,13 +152,38 @@ els.avatarInput.addEventListener('change', () => {
   reader.readAsDataURL(file);
 });
 
-els.profileBtn.addEventListener('click', () => {
-  els.game.classList.add('hidden');
-  els.home.classList.remove('hidden');
-  els.homeError.textContent = 'Puedes cambiar tu nombre o foto. Se aplicará al entrar en una nueva sala.';
+els.profileBtn.addEventListener('click', openProfileModal);
+els.closeProfileBtn.addEventListener('click', closeProfileModal);
+els.profileModal.addEventListener('click', (event) => {
+  if (event.target === els.profileModal) closeProfileModal();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !els.profileModal.classList.contains('hidden')) closeProfileModal();
+});
+
+els.saveProfileBtn.addEventListener('click', () => {
+  if (!els.name.value.trim()) {
+    els.profileError.textContent = 'Escribe un nombre.';
+    return;
+  }
+  saveProfileLocal();
+  if (roomState) {
+    socket.emit('update-profile', { name: profile.name, avatar: profile.avatar }, (result) => {
+      if (!result?.ok) {
+        els.profileError.textContent = result?.error || 'No se pudo guardar el perfil.';
+        return;
+      }
+      closeProfileModal();
+    });
+  } else {
+    closeProfileModal();
+  }
 });
 
 socket.on('connect', () => { myId = socket.id; });
+socket.on('session-replaced', () => {
+  goHome('Esta sesión se cerró porque el mismo perfil entró desde otra pestaña o sala.');
+});
 
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
@@ -120,10 +208,19 @@ function sendWithError(event, data, target, onSuccess) {
   });
 }
 
+function ensureProfile() {
+  if (!profile.name.trim()) {
+    openProfileModal();
+    els.profileError.textContent = 'Crea tu perfil antes de entrar.';
+    return false;
+  }
+  return true;
+}
+
 els.createBtn.addEventListener('click', () => {
   els.homeError.textContent = '';
-  saveProfile();
-  socket.emit('create-room', { name: els.name.value, avatar: profile.avatar }, (result) => {
+  if (!ensureProfile()) return;
+  socket.emit('create-room', { name: profile.name, avatar: profile.avatar, playerKey }, (result) => {
     if (!result?.ok) return els.homeError.textContent = result?.error || 'No se pudo crear la sala.';
     showGame(result.code);
   });
@@ -131,11 +228,15 @@ els.createBtn.addEventListener('click', () => {
 
 els.joinBtn.addEventListener('click', () => {
   els.homeError.textContent = '';
-  saveProfile();
-  socket.emit('join-room', { code: els.roomCode.value, name: els.name.value, avatar: profile.avatar }, (result) => {
+  if (!ensureProfile()) return;
+  socket.emit('join-room', { code: els.roomCode.value, name: profile.name, avatar: profile.avatar, playerKey }, (result) => {
     if (!result?.ok) return els.homeError.textContent = result?.error || 'No se pudo entrar.';
     showGame(result.code);
   });
+});
+
+els.leaveBtn.addEventListener('click', () => {
+  socket.emit('leave-room', {}, () => goHome('Has salido de la partida.'));
 });
 
 els.roomCode.addEventListener('input', () => {
@@ -219,16 +320,12 @@ function renderHand() {
   if (roomState.phase !== 'playing' || privateState.isJudge) return;
   const me = roomState.players.find((p) => p.id === myId);
   const alreadyPlayed = Boolean(me?.hasPlayed);
-
   privateState.hand.forEach((card, index) => {
     const button = document.createElement('button');
     button.className = `white-card${selectedCardIndex === index ? ' selected' : ''}`;
     button.textContent = card;
     button.disabled = alreadyPlayed;
-    button.addEventListener('click', () => {
-      selectedCardIndex = index;
-      render();
-    });
+    button.addEventListener('click', () => { selectedCardIndex = index; render(); });
     els.hand.appendChild(button);
   });
 }
@@ -241,10 +338,7 @@ function renderSubmissions() {
     button.className = `white-card${selectedSubmissionId === submission.submissionId ? ' selected' : ''}`;
     button.textContent = submission.card;
     button.disabled = !privateState.isJudge;
-    button.addEventListener('click', () => {
-      selectedSubmissionId = submission.submissionId;
-      render();
-    });
+    button.addEventListener('click', () => { selectedSubmissionId = submission.submissionId; render(); });
     els.submissions.appendChild(button);
   }
 }
@@ -284,7 +378,6 @@ function render() {
   els.nextBtn.classList.toggle('hidden', !(privateState.isHost && roomState.phase === 'round-end'));
   els.lobby.classList.toggle('hidden', roomState.started);
   els.round.classList.toggle('hidden', !roomState.started);
-
   if (roomState.started) {
     els.blackCard.textContent = roomState.blackCard || '';
     renderStatus();
