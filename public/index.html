@@ -14,6 +14,15 @@
       <h1>Cartas contra tus amigos</h1>
       <p class="subtitle">Crea una sala privada y juega desde el navegador.</p>
       <div id="homeProfile" class="profile-editor"></div>
+      <label for="gameMode">Modo de juego</label>
+      <select id="gameMode">
+        <option value="original">Original — un juez elige la mejor</option>
+        <option value="chaos">Modo Caos — todos juegan y votan</option>
+      </select>
+      <div id="modeExplanation" class="mode-explanation">
+        <strong>Original</strong>
+        <p>En cada ronda hay un juez que no juega carta. Las respuestas se mezclan y el juez escoge la ganadora según su criterio.</p>
+      </div>
       <label for="maxRounds">Rondas de la partida</label>
       <select id="maxRounds"><option value="5">5 rondas</option><option value="10" selected>10 rondas</option><option value="15">15 rondas</option><option value="20">20 rondas</option><option value="30">30 rondas</option></select>
       <button id="createBtn" class="primary">Crear partida</button>
@@ -52,7 +61,7 @@
           <div id="lobby" class="panel center-panel">
             <h2>Esperando jugadores</h2>
             <p>Comparte el código de sala. Se necesitan al menos 3 jugadores.</p>
-            <p id="deckStats" class="deck-stats"></p>
+            <p id="lobbyMode" class="mode-chip"></p><p id="deckStats" class="deck-stats"></p>
           </div>
           <div id="round" class="hidden">
             <div class="black-card" id="blackCard"></div>

@@ -79,3 +79,8 @@ Para activar la creación automática de cartas al finalizar, configura en Rende
 - `DATA_DIR`: ruta del disco persistente, por ejemplo `/var/data`.
 
 Las cartas generadas se guardan en `custom-cards.json` y se incorporan inmediatamente al mazo. Las estadísticas anónimas de las últimas 100 partidas se guardan en `game-analytics.json`.
+
+## Modos de juego
+
+- **Original:** un jugador actúa como juez y elige la mejor respuesta anónima.
+- **Modo Caos:** todos envían respuesta. Cuando todos terminan, las respuestas se muestran mezcladas y sin autor. Cada jugador vota una respuesta que no sea la suya. Si la primera posición queda empatada, nadie gana el punto. Los autores se revelan al cerrar la ronda.
