@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cartas contra tus amigos</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <section id="home" class="panel home-panel">
+      <h1>Cartas contra tus amigos</h1>
+      <p class="subtitle">Crea una sala privada y juega desde el navegador.</p>
+
+      <label for="name">Tu nombre</label>
+      <input id="name" maxlength="24" placeholder="Escribe tu nombre" autocomplete="off" />
+
+      <button id="createBtn" class="primary">Crear partida</button>
+
+      <div class="divider"><span>o</span></div>
+
+      <label for="roomCode">Código de sala</label>
+      <div class="join-row">
+        <input id="roomCode" maxlength="4" placeholder="ABCD" autocomplete="off" />
+        <button id="joinBtn">Entrar</button>
+      </div>
+
+      <p id="homeError" class="error"></p>
+    </section>
+
+    <section id="game" class="hidden">
+      <header class="topbar">
+        <div>
+          <span class="muted">Sala</span>
+          <strong id="codeText"></strong>
+        </div>
+        <button id="copyBtn" class="small">Copiar código</button>
+      </header>
+
+      <div class="layout">
+        <aside class="panel players-panel">
+          <h2>Jugadores</h2>
+          <div id="players"></div>
+          <button id="startBtn" class="primary hidden">Empezar partida</button>
+          <button id="nextBtn" class="primary hidden">Siguiente ronda</button>
+          <p id="gameError" class="error"></p>
+        </aside>
+
+        <section class="game-area">
+          <div id="lobby" class="panel center-panel">
+            <h2>Esperando jugadores</h2>
+            <p>Comparte el código de sala. Se necesitan al menos 3 jugadores.</p>
+          </div>
+
+          <div id="round" class="hidden">
+            <div class="black-card" id="blackCard"></div>
+            <p id="statusText" class="status"></p>
+            <div id="submissions" class="cards-grid"></div>
+            <div id="hand" class="cards-grid"></div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #efefef;
+  color: #111;
+}
+
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+.container {
+  width: min(1180px, 94%);
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.panel {
+  background: white;
+  border: 2px solid #111;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 6px 6px 0 #111;
+}
+
+.home-panel {
+  max-width: 480px;
+  margin: 8vh auto 0;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 8px; line-height: .95; }
+h2 { margin-top: 0; }
+.subtitle, .muted { color: #666; }
+label { display: block; margin: 18px 0 6px; font-weight: 700; }
+
+input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 2px solid #111;
+  border-radius: 8px;
+  background: #fff;
+}
+
+button {
+  border: 2px solid #111;
+  border-radius: 8px;
+  background: #fff;
+  padding: 12px 16px;
+  font-weight: 700;
+}
+
+button:hover { transform: translateY(-1px); }
+button:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.primary { width: 100%; margin-top: 14px; background: #111; color: #fff; }
+.small { padding: 8px 12px; }
+
+.join-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+.divider { display: flex; align-items: center; gap: 12px; margin: 20px 0 6px; color: #777; }
+.divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #bbb; }
+.error { color: #b00020; min-height: 20px; }
+.hidden { display: none !important; }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#codeText { font-size: 1.5rem; letter-spacing: .18em; margin-left: 8px; }
+.layout { display: grid; grid-template-columns: 270px 1fr; gap: 24px; }
+.players-panel { align-self: start; }
+.player-row { display: flex; justify-content: space-between; gap: 10px; padding: 10px 0; border-bottom: 1px solid #ddd; }
+.player-row:last-child { border-bottom: 0; }
+.player-name { font-weight: 700; }
+.badge { font-size: .78rem; padding: 2px 7px; border: 1px solid #111; border-radius: 999px; margin-left: 5px; }
+.score { white-space: nowrap; }
+
+.center-panel { text-align: center; padding: 60px 24px; }
+.black-card {
+  background: #111;
+  color: white;
+  width: min(360px, 100%);
+  min-height: 210px;
+  padding: 24px;
+  border-radius: 14px;
+  font-size: 1.55rem;
+  font-weight: 700;
+  display: flex;
+  align-items: flex-start;
+  box-shadow: 6px 6px 0 #777;
+}
+.status { font-weight: 700; margin: 24px 0 14px; }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+.white-card {
+  text-align: left;
+  min-height: 150px;
+  background: white;
+  padding: 18px;
+  border: 2px solid #111;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 #111;
+}
+.white-card:hover:not(:disabled) { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #111; }
+.winner { outline: 4px solid #111; }
+
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; }
+  .players-panel { order: 2; }
+  .game-area { order: 1; }
+  .container { padding-top: 18px; }
+}
