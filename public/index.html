@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,13 +7,26 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <button id="themeBtn" class="theme-btn" aria-label="Cambiar tema">Modo oscuro</button>
+
   <main class="container">
     <section id="home" class="panel home-panel">
       <h1>Cartas contra tus amigos</h1>
       <p class="subtitle">Crea una sala privada y juega desde el navegador.</p>
 
-      <label for="name">Tu nombre</label>
-      <input id="name" maxlength="24" placeholder="Escribe tu nombre" autocomplete="off" />
+      <div class="profile-editor">
+        <button id="avatarPicker" class="avatar-picker" type="button" aria-label="Elegir foto de perfil">
+          <img id="avatarPreview" alt="Foto de perfil" class="hidden" />
+          <span id="avatarInitial">?</span>
+          <span class="avatar-edit">✎</span>
+        </button>
+        <div class="profile-fields">
+          <label for="name">Tu nombre</label>
+          <input id="name" maxlength="24" placeholder="Escribe tu nombre" autocomplete="nickname" />
+          <small>El perfil se guarda automáticamente en este navegador.</small>
+        </div>
+        <input id="avatarInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden" />
+      </div>
 
       <button id="createBtn" class="primary">Crear partida</button>
 
@@ -34,7 +47,10 @@
           <span class="muted">Sala</span>
           <strong id="codeText"></strong>
         </div>
-        <button id="copyBtn" class="small">Copiar código</button>
+        <div class="top-actions">
+          <button id="profileBtn" class="small">Mi perfil</button>
+          <button id="copyBtn" class="small">Copiar código</button>
+        </div>
       </header>
 
       <div class="layout">
@@ -50,6 +66,7 @@
           <div id="lobby" class="panel center-panel">
             <h2>Esperando jugadores</h2>
             <p>Comparte el código de sala. Se necesitan al menos 3 jugadores.</p>
+            <p id="deckStats" class="deck-stats"></p>
           </div>
 
           <div id="round" class="hidden">
@@ -57,6 +74,10 @@
             <p id="statusText" class="status"></p>
             <div id="submissions" class="cards-grid"></div>
             <div id="hand" class="cards-grid"></div>
+            <div id="confirmArea" class="confirm-area hidden">
+              <button id="confirmBtn" class="primary confirm-btn" disabled>Confirmar carta</button>
+              <button id="cancelBtn" class="secondary">Cancelar selección</button>
+            </div>
           </div>
         </section>
       </div>

@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const cards = require('./cards.json');
+const rawCards = require('./cards.json');
 
 const app = express();
 const server = http.createServer(app);
@@ -10,6 +10,22 @@ const io = new Server(server);
 
 const PORT = process.env.PORT || 3000;
 const rooms = new Map();
+
+function normalizeDeck(deck) {
+  if (!Array.isArray(deck)) return [];
+  return [...new Set(deck.map((card) => String(card || '').trim()).filter(Boolean))];
+}
+
+const cards = {
+  black: normalizeDeck(rawCards.black),
+  white: normalizeDeck(rawCards.white)
+};
+
+if (cards.black.length === 0 || cards.white.length < 20) {
+  throw new Error(`Mazo insuficiente: ${cards.black.length} negras y ${cards.white.length} blancas.`);
+}
+
+console.log(`Mazo cargado: ${cards.black.length} cartas negras y ${cards.white.length} cartas blancas.`);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -35,6 +51,12 @@ function sanitizeName(name) {
   return String(name || '').trim().slice(0, 24) || 'Jugador';
 }
 
+function sanitizeAvatar(avatar) {
+  const value = String(avatar || '');
+  if (!/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(value)) return '';
+  return value.length <= 180000 ? value : '';
+}
+
 function buildPublicRoom(room) {
   return {
     code: room.code,
@@ -43,9 +65,11 @@ function buildPublicRoom(room) {
     phase: room.phase,
     judgeId: room.judgeId,
     blackCard: room.currentBlack,
+    deckStats: { black: cards.black.length, white: cards.white.length },
     players: room.players.map((p) => ({
       id: p.id,
       name: p.name,
+      avatar: p.avatar,
       score: p.score,
       cardCount: p.hand.length,
       hasPlayed: room.submissions.some((s) => s.playerId === p.id)
@@ -72,9 +96,7 @@ function emitRoom(room) {
 
 function refillHand(room, player) {
   while (player.hand.length < 10) {
-    if (room.whiteDeck.length === 0) {
-      room.whiteDeck = shuffle(cards.white);
-    }
+    if (room.whiteDeck.length === 0) room.whiteDeck = shuffle(cards.white);
     player.hand.push(room.whiteDeck.pop());
   }
 }
@@ -85,14 +107,10 @@ function startRound(room) {
   room.roundWinnerId = null;
   room.winningCard = null;
 
-  if (room.blackDeck.length === 0) {
-    room.blackDeck = shuffle(cards.black);
-  }
+  if (room.blackDeck.length === 0) room.blackDeck = shuffle(cards.black);
   room.currentBlack = room.blackDeck.pop();
 
-  for (const player of room.players) {
-    refillHand(room, player);
-  }
+  for (const player of room.players) refillHand(room, player);
 }
 
 function advanceJudge(room) {
@@ -107,9 +125,9 @@ function getRoomBySocket(socket) {
 }
 
 io.on('connection', (socket) => {
-  socket.on('create-room', ({ name }, callback) => {
+  socket.on('create-room', ({ name, avatar }, callback) => {
     const code = makeRoomCode();
-    const player = { id: socket.id, name: sanitizeName(name), score: 0, hand: [] };
+    const player = { id: socket.id, name: sanitizeName(name), avatar: sanitizeAvatar(avatar), score: 0, hand: [] };
     const room = {
       code,
       hostId: socket.id,
@@ -132,7 +150,7 @@ io.on('connection', (socket) => {
     emitRoom(room);
   });
 
-  socket.on('join-room', ({ code, name }, callback) => {
+  socket.on('join-room', ({ code, name, avatar }, callback) => {
     const normalizedCode = String(code || '').trim().toUpperCase();
     const room = rooms.get(normalizedCode);
 
@@ -140,7 +158,7 @@ io.on('connection', (socket) => {
     if (room.started) return callback?.({ ok: false, error: 'La partida ya ha empezado.' });
     if (room.players.length >= 12) return callback?.({ ok: false, error: 'La sala está llena.' });
 
-    room.players.push({ id: socket.id, name: sanitizeName(name), score: 0, hand: [] });
+    room.players.push({ id: socket.id, name: sanitizeName(name), avatar: sanitizeAvatar(avatar), score: 0, hand: [] });
     socket.join(normalizedCode);
     socket.data.roomCode = normalizedCode;
     callback?.({ ok: true, code: normalizedCode });
