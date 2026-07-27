@@ -18,13 +18,22 @@ const els = {
   avatarInitial: document.getElementById('avatarInitial'), profileBtn: document.getElementById('profileBtn'),
   profileModal: document.getElementById('profileModal'), closeProfileBtn: document.getElementById('closeProfileBtn'),
   saveProfileBtn: document.getElementById('saveProfileBtn'), profileError: document.getElementById('profileError'),
-  homeProfile: document.getElementById('homeProfile')
+  homeProfile: document.getElementById('homeProfile'),
+  createCardsBtn: document.getElementById('createCardsBtn'), controlBtn: document.getElementById('controlBtn'),
+  voteMenuBtn: document.getElementById('voteMenuBtn'), cardCreatorModal: document.getElementById('cardCreatorModal'),
+  customCardType: document.getElementById('customCardType'), customCardText: document.getElementById('customCardText'),
+  creatorError: document.getElementById('creatorError'), saveCustomCardBtn: document.getElementById('saveCustomCardBtn'),
+  voteModal: document.getElementById('voteModal'), voteCandidates: document.getElementById('voteCandidates'), voteError: document.getElementById('voteError'),
+  activeVoteModal: document.getElementById('activeVoteModal'), activeVoteCard: document.getElementById('activeVoteCard'),
+  activeVoteCount: document.getElementById('activeVoteCount'), voteYesBtn: document.getElementById('voteYesBtn'), voteNoBtn: document.getElementById('voteNoBtn'),
+  controlModal: document.getElementById('controlModal'), controlStats: document.getElementById('controlStats'),
+  flaggedCards: document.getElementById('flaggedCards'), controlError: document.getElementById('controlError')
 };
 
 let roomState = null;
 let privateState = { hand: [], isHost: false, isJudge: false };
 let myId = null;
-let selectedCardIndex = null;
+let selectedCardIndices = [];
 let selectedSubmissionId = null;
 let lastPhase = null;
 
@@ -108,7 +117,7 @@ function closeProfileModal() {
 function goHome(message = '') {
   roomState = null;
   privateState = { hand: [], isHost: false, isJudge: false };
-  selectedCardIndex = null;
+  selectedCardIndices = [];
   selectedSubmissionId = null;
   lastPhase = null;
   els.game.classList.add('hidden');
@@ -195,6 +204,69 @@ els.themeBtn.addEventListener('click', () => {
   applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
 });
 
+function openModal(modal) { modal.classList.remove('hidden'); }
+function closeModal(modal) { modal.classList.add('hidden'); }
+document.querySelectorAll('[data-close]').forEach((button) => button.addEventListener('click', () => closeModal(document.getElementById(button.dataset.close))));
+[els.cardCreatorModal, els.voteModal, els.controlModal].forEach((modal) => modal.addEventListener('click', (event) => { if (event.target === modal) closeModal(modal); }));
+function showToast(message) {
+  const toast = document.createElement('div'); toast.className = 'toast'; toast.textContent = message; document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2600);
+}
+socket.on('toast', showToast);
+
+els.createCardsBtn.addEventListener('click', () => { els.creatorError.textContent = ''; els.customCardText.value = ''; openModal(els.cardCreatorModal); });
+els.saveCustomCardBtn.addEventListener('click', () => {
+  socket.emit('add-custom-card', { type: els.customCardType.value, text: els.customCardText.value }, (result) => {
+    if (!result?.ok) return els.creatorError.textContent = result?.error || 'No se pudo guardar.';
+    closeModal(els.cardCreatorModal); showToast('Carta guardada y añadida al mazo.');
+  });
+});
+
+function renderVoteCandidates() {
+  els.voteCandidates.innerHTML = '';
+  const candidates = [];
+  if (roomState?.blackCard) candidates.push({ type: 'black', text: roomState.blackCard });
+  for (const text of [...new Set(privateState.hand || [])]) candidates.push({ type: 'white', text });
+  for (const candidate of candidates) {
+    const row = document.createElement('div'); row.className = 'vote-candidate';
+    const info = document.createElement('div');
+    const type = document.createElement('div'); type.className = 'control-type'; type.textContent = candidate.type === 'black' ? 'Carta negra' : 'Carta blanca';
+    const text = document.createElement('p'); text.textContent = candidate.text; info.append(type, text);
+    const button = document.createElement('button'); button.className = 'small danger'; button.textContent = 'Proponer';
+    button.addEventListener('click', () => socket.emit('start-delete-vote', candidate, (result) => {
+      if (!result?.ok) return els.voteError.textContent = result?.error || 'No se pudo iniciar la votación.';
+      closeModal(els.voteModal);
+    }));
+    row.append(info, button); els.voteCandidates.appendChild(row);
+  }
+}
+els.voteMenuBtn.addEventListener('click', () => { els.voteError.textContent = ''; renderVoteCandidates(); openModal(els.voteModal); });
+els.voteYesBtn.addEventListener('click', () => roomState?.vote && socket.emit('cast-delete-vote', { voteId: roomState.vote.id, choice: 'yes' }, () => {}));
+els.voteNoBtn.addEventListener('click', () => roomState?.vote && socket.emit('cast-delete-vote', { voteId: roomState.vote.id, choice: 'no' }, () => {}));
+
+function loadControl() {
+  els.controlError.textContent = '';
+  socket.emit('get-control-data', {}, (result) => {
+    if (!result?.ok) return els.controlError.textContent = result?.error || 'No se pudo cargar Control.';
+    els.controlStats.textContent = `Mazo actual: ${result.stats.black} negras y ${result.stats.white} blancas.`;
+    els.flaggedCards.innerHTML = '';
+    if (!result.flagged.length) els.flaggedCards.textContent = 'No hay cartas pendientes.';
+    for (const card of result.flagged) {
+      const row = document.createElement('div'); row.className = 'control-item';
+      const info = document.createElement('div'); const type = document.createElement('div'); type.className = 'control-type'; type.textContent = card.type === 'black' ? 'Negra' : 'Blanca';
+      const text = document.createElement('p'); text.textContent = card.text; info.append(type, text);
+      const button = document.createElement('button'); button.className = 'small danger'; button.textContent = 'Borrar definitivamente';
+      button.addEventListener('click', () => socket.emit('delete-flagged-card', card, (deleteResult) => {
+        if (!deleteResult?.ok) return els.controlError.textContent = deleteResult?.error || 'No se pudo borrar.';
+        loadControl(); showToast('Carta eliminada del mazo.');
+      }));
+      row.append(info, button); els.flaggedCards.appendChild(row);
+    }
+  });
+}
+els.controlBtn.addEventListener('click', () => { openModal(els.controlModal); loadControl(); });
+
+
 function showGame(code) {
   els.home.classList.add('hidden');
   els.game.classList.remove('hidden');
@@ -253,15 +325,15 @@ els.copyBtn.addEventListener('click', async () => {
 els.startBtn.addEventListener('click', () => sendWithError('start-game', {}, els.gameError));
 els.nextBtn.addEventListener('click', () => sendWithError('next-round', {}, els.gameError));
 els.cancelBtn.addEventListener('click', () => {
-  selectedCardIndex = null;
+  selectedCardIndices = [];
   selectedSubmissionId = null;
   render();
 });
 
 els.confirmBtn.addEventListener('click', () => {
-  if (roomState.phase === 'playing' && selectedCardIndex !== null) {
-    sendWithError('play-card', { cardIndex: selectedCardIndex }, els.gameError, () => {
-      selectedCardIndex = null;
+  if (roomState.phase === 'playing' && selectedCardIndices.length > 0) {
+    sendWithError('play-card', { cardIndices: selectedCardIndices }, els.gameError, () => {
+      selectedCardIndices = [];
       render();
     });
   } else if (roomState.phase === 'judging' && selectedSubmissionId) {
@@ -275,7 +347,7 @@ els.confirmBtn.addEventListener('click', () => {
 socket.on('private-state', (state) => { privateState = state; render(); });
 socket.on('room-state', (state) => {
   if (lastPhase !== state.phase) {
-    selectedCardIndex = null;
+    selectedCardIndices = [];
     selectedSubmissionId = null;
     lastPhase = state.phase;
   }
@@ -322,10 +394,22 @@ function renderHand() {
   const alreadyPlayed = Boolean(me?.hasPlayed);
   privateState.hand.forEach((card, index) => {
     const button = document.createElement('button');
-    button.className = `white-card${selectedCardIndex === index ? ' selected' : ''}`;
+    const selectedOrder = selectedCardIndices.indexOf(index);
+    button.className = `white-card${selectedOrder >= 0 ? ' selected' : ''}`;
     button.textContent = card;
     button.disabled = alreadyPlayed;
-    button.addEventListener('click', () => { selectedCardIndex = index; render(); });
+    if (selectedOrder >= 0 && (roomState.cardsRequired || 1) > 1) {
+      const order = document.createElement('span');
+      order.className = 'selection-order';
+      order.textContent = String(selectedOrder + 1);
+      button.appendChild(order);
+    }
+    button.addEventListener('click', () => {
+      const current = selectedCardIndices.indexOf(index);
+      if (current >= 0) selectedCardIndices.splice(current, 1);
+      else if (selectedCardIndices.length < (roomState.cardsRequired || 1)) selectedCardIndices.push(index);
+      render();
+    });
     els.hand.appendChild(button);
   });
 }
@@ -336,7 +420,7 @@ function renderSubmissions() {
   for (const submission of roomState.submissions) {
     const button = document.createElement('button');
     button.className = `white-card${selectedSubmissionId === submission.submissionId ? ' selected' : ''}`;
-    button.textContent = submission.card;
+    button.textContent = submission.cards.join('  +  ');
     button.disabled = !privateState.isJudge;
     button.addEventListener('click', () => { selectedSubmissionId = submission.submissionId; render(); });
     els.submissions.appendChild(button);
@@ -349,7 +433,7 @@ function renderConfirmArea() {
   const canJudgeConfirm = roomState.phase === 'judging' && privateState.isJudge;
   const visible = canPlayerConfirm || canJudgeConfirm;
   els.confirmArea.classList.toggle('hidden', !visible);
-  els.confirmBtn.disabled = canPlayerConfirm ? selectedCardIndex === null : selectedSubmissionId === null;
+  els.confirmBtn.disabled = canPlayerConfirm ? selectedCardIndices.length !== (roomState.cardsRequired || 1) : selectedSubmissionId === null;
   els.confirmBtn.textContent = canJudgeConfirm ? 'Confirmar ganador' : 'Confirmar carta';
 }
 
@@ -358,20 +442,32 @@ function renderStatus() {
   if (roomState.phase === 'playing') {
     if (privateState.isJudge) els.statusText.textContent = 'Eres el juez. Espera a que respondan los demás.';
     else if (me?.hasPlayed) els.statusText.textContent = 'Carta enviada. Esperando al resto.';
-    else els.statusText.textContent = selectedCardIndex === null ? 'Elige una carta de tu mano.' : 'Carta seleccionada. Confírmala para enviarla.';
+    else {
+      const required = roomState.cardsRequired || 1;
+      if (selectedCardIndices.length === 0) els.statusText.textContent = `Elige ${required} carta${required === 1 ? '' : 's'} de tu mano.`;
+      else if (selectedCardIndices.length < required) els.statusText.textContent = `Has elegido ${selectedCardIndices.length} de ${required}. El orden será el de selección.`;
+      else els.statusText.textContent = `${required === 1 ? 'Carta seleccionada' : 'Cartas seleccionadas'}. Confirma para enviar.`;
+    }
   } else if (roomState.phase === 'judging') {
     els.statusText.textContent = privateState.isJudge
       ? (selectedSubmissionId ? 'Respuesta seleccionada. Confirma el ganador.' : 'Elige la respuesta ganadora.')
       : 'El juez está eligiendo la mejor respuesta.';
   } else if (roomState.phase === 'round-end') {
     const winner = roomState.players.find((p) => p.id === roomState.roundWinnerId);
-    els.statusText.textContent = `Ha ganado ${winner?.name || 'un jugador'} con: “${roomState.winningCard}”`;
+    els.statusText.textContent = `Ha ganado ${winner?.name || 'un jugador'} con: “${(roomState.winningCards || []).join(' + ')}”`;
   }
 }
 
 function render() {
   if (!roomState) return;
   renderPlayers();
+  if (roomState.vote) {
+    els.activeVoteCard.textContent = roomState.vote.text;
+    els.activeVoteCount.textContent = `${roomState.vote.yes} sí · ${roomState.vote.no} no · hacen falta ${roomState.vote.needed}`;
+    const voted = roomState.vote.hasVoted.includes(myId);
+    els.voteYesBtn.disabled = voted; els.voteNoBtn.disabled = voted;
+    openModal(els.activeVoteModal);
+  } else closeModal(els.activeVoteModal);
   els.deckStats.textContent = `Mazo cargado: ${roomState.deckStats?.black ?? 0} negras y ${roomState.deckStats?.white ?? 0} blancas.`;
   els.startBtn.classList.toggle('hidden', !(privateState.isHost && !roomState.started));
   els.startBtn.disabled = roomState.players.length < 3;
@@ -380,6 +476,13 @@ function render() {
   els.round.classList.toggle('hidden', !roomState.started);
   if (roomState.started) {
     els.blackCard.textContent = roomState.blackCard || '';
+    const required = roomState.cardsRequired || 1;
+    if (required > 1) {
+      const badge = document.createElement('span');
+      badge.className = 'pick-badge';
+      badge.textContent = `Elige ${required}`;
+      els.blackCard.appendChild(badge);
+    }
     renderStatus();
     renderSubmissions();
     renderHand();

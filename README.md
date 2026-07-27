@@ -53,3 +53,17 @@ Mantén siempre las comillas, las comas y los corchetes del formato JSON.
 - El juez rota cada ronda.
 - El anfitrión inicia la partida y pasa a la siguiente ronda.
 - El servidor guarda las partidas solo en memoria. Si se reinicia, las salas desaparecen.
+
+
+## Cartas negras con varios huecos
+Las cartas negras pueden ser texto normal o un objeto con etiqueta `pick`:
+```json
+{"text": "____ + ____ = ____.", "pick": 3}
+```
+El juego también detecta automáticamente el número de `____`, pero la etiqueta permite revisarlo o modificarlo manualmente.
+
+## Persistencia de cartas creadas y moderación
+
+Las cartas creadas se guardan en `custom-cards.json`. Las cartas aprobadas por votación quedan registradas en `flagged-cards.json`, y las eliminadas definitivamente en `deleted-cards.json`.
+
+En Render, configura `DATA_DIR` apuntando a un Persistent Disk para conservar estos archivos tras reinicios o despliegues. Sin disco persistente, Render puede borrar los cambios guardados en tiempo de ejecución.

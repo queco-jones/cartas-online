@@ -1,305 +1,605 @@
 {
   "black": [
-    "¡Oye, Reddit! Soy ____. Pregúntame lo que quieras.",
-    "¡Presentamos Béisbol Extremo! ¡Es béisbol, pero con ____!",
-    "¿Cuál es el placer oculto de Batman?",
-    "La normativa de Aena ahora prohíbe ____ en aviones.",
-    "Lo nuevo de J.K. Rowling: Harry Potter y la cámara de ____.",
-    "Correcto, he matado a ____. ¿Cómo, preguntas? ____.",
-    "Perdón, profe, no he hecho los deberes por ____.",
-    "Y el Óscar a ____ es para ____.",
-    "Tío, no vayas a ese baño. Hay ____ ahí.",
-    "¿Cómo perdí mi virginidad?",
-    "Qué pena que los niños de hoy en día se estén involucrando en ____.",
-    "Paso 1: ____. Paso 2: ____. Paso 3: «Profit».",
-    "____. ¡Apuesto a que no puedes tomar sólo uno!",
-    "Niños, no necesito drogas para colocarme. Ya lo hago con ____.",
-    "Para mi siguiente truco, sacaré ____ de ____.",
-    "Mariano Rajoy no puede correrse sin ____.",
-    "En la nueva película original de Disney Channel, Hannah Montana se enfrenta con ____ por primera vez.",
-    "¿Cuál es mi poder secreto?",
-    "Esta semana me pongo a dieta. Sólo zumo de col y ____.",
-    "____ + ____ = ____.",
-    "Cuando el faraón se mantuvo impasible, Moisés invocó una plaga de ____.",
-    "Por una vez, me gustaría oírte decir: «Gracias, mamá. Gracias por ____».",
-    "Papi, ¿por qué mami está llorando?",
-    "Mientras flipaba con ácido, ____ se convirtió en ____.",
-    "El 50 % de los matrimonios terminan en ____.",
-    "Queridos compatriotas: ¡Antes de que termine la década, haremos llegar ____ a la luna!",
-    "Esta temporada en El Liceo, la clásica obra existencial de Samuel Beckett: Esperando a ____.",
-    "En lugar de carbón, los Reyes Magos ahora traen a los que se portan mal ____.",
-    "La vida de los indígenas cambió para siempre cuando el hombre blanco les presentó ____.",
-    "¿Qué está usando el Ministerio de Educación para incentivar a los estudiantes de barrios humildes a triunfar?",
-    "Quizá nació con ello. Quizá es ____.",
-    "¿En qué está pensando George W. Bush ahora mismo?",
-    "Me llamo Peter Parker. Me picó una araña radiactiva, y ahora soy ____.",
-    "____ es una pendiente resbaladiza que lleva a ____.",
-    "¿Por qué me duele todo?",
-    "Una cena romántica a la luz de las velas estaría incompleta sin ____.",
-    "¡Acabo de ver este perturbador vídeo! ¡¡Retweet, por favor!! ____ #stop",
-    "¡Tip! Cuando tu marido te pida que le hagas una mamada, sorpréndele con ____ en su lugar.",
-    "La excursión del colegio ha sido completamente arruinada por ____.",
-    "¿Qué es el mejor amigo de una chica?",
-    "Escribo al programa porque estoy teniendo problemas con ____ y me gustaría tu consejo.",
-    "En el nuevo thriller de Jordan Peele, una joven familia descubre que ____ había sido ____ todo este tiempo.",
-    "Cuando sea presidente, crearé el Ministerio de ____.",
-    "¿Qué me esconden mis padres?",
-    "¿Qué es lo que siempre le da vidilla a la fiesta?",
-    "SI te gusta ____, PUEDE QUE SEAS UN CATETO.",
-    "Haz un haiku.",
-    "¿Qué hizo de mi primer beso tan incómodo?",
-    "¡Hola, bienvenidos a Foster’s Hollywood! ¿Queréis empezar bien la noche con ____?",
-    "Tengo 99 problemas, pero ____ no es uno.",
-    "____. ¡Es una trampa!",
-    "El nuevo reality de Telecinco va de doce solteras buenorras viviendo con ____.",
-    "¿Qué encontraría la yaya perturbador y a la vez extrañamente encantador?",
-    "____. Eso fue la hostia.",
-    "Nunca entendí ____ hasta que encontré ____.",
-    "Durante el sexo, me gusta pensar en ____.",
-    "¿Qué terminó con mi última relación?",
-    "¿Qué es ese sonido?",
-    "Hmm, eh, chicos, sé que ha sido idea mía, pero estoy teniendo serias dudas sobre ____.",
-    "¿Por qué estoy pegajoso?",
-    "No soy médico, pero estoy seguro de que padeces lo que se dice «____».",
-    "¿De qué hay un montón en el paraíso?",
-    "Tras cuatro discos de platino y tres Grammys, es hora de volver a mis raíces, a lo que me inspiró a hacer música en un primer lugar: ____.",
-    "¿Qué es lo que siempre te pone cachondo?",
-    "Decían que estábamos locos. Decían que no podíamos meter ____ dentro de ____. Estaban equivocados.",
-    "Divinity presenta «____: la historia de ____».",
-    "____: probado en niños, aprobado por las madres.",
-    "¿Por qué no puedo dormir por las noches?",
-    "¿Qué es ese olor?",
-    "¿Por qué está Brett tan sudoroso?",
-    "Así es como acaba el mundo. Así es como acaba el mundo. No con una explosión sino con ____.",
-    "Próximamente en la Gran Vía de Madrid, ____: el musical.",
-    "He aquí la iglesia. He aquí el campanario. Abre las puertas. Y encontrarás ____.",
-    "Pero antes de matarlo, Sr. Bond, me gustaría enseñarle ____.",
-    "Un reciente estudio de laboratorio demuestra que los estudiantes de grado tienen un 50 % menos de sexo tras ser expuestos a ____.",
-    "¡Presentamos al increíble dúo superhéroe y compañero! ¡Son ____ y ____!",
-    "A continuación, en DAZN: Campeonato Mundial de ____.",
-    "Cuando sea multimillonario, levantaré una estatua de 20 metros en conmemoración de ____.",
-    "Los historiadores militares recuerdan a Alejandro Magno por su brillante uso de ____ contra los persas.",
-    "¡La guerra! ¿Para qué es buena?",
-    "¿Qué me produce gases incontrolables?",
-    "El nuevo SEAT Tarraco. Con la potencia y el espacio para llevar ____ a todos lados.",
-    "Bueno, si me permiten, caballeros, tengo una cita con ____.",
-    "La medicina alternativa ahora contempla los poderes curativos de ____.",
-    "Como madre de cinco chicos revoltosos, estoy acostumbrada a ____.",
-    "____. Chócala.",
-    "Hoy, en el programa de Ana Rosa: «¡Ayuda! ¡Mi hijo es ____!»",
-    "Voy haciendo con un poco de ayuda de ____.",
-    "★✩✩✩✩ ¡NO venir aquí! ¡Había ____ en mi fetuccini alfredo!",
-    "Bebo para olvidar ____.",
-    "Soy LeBron James, y cuando no estoy lanzando mates, me encanta ____.",
-    "¿Qué hace que valga la pena vivir?",
-    "Telepizza: El secreto está en ____.",
-    "Sr. y Sra. Díaz, les hemos llamado porque estamos preocupados por Cintia. ¿Son conscientes de que su hija es ____?",
-    "Si no puedes estar con quien amas, ama a ____.",
-    "Presentado por Estrella Galicia®, cerveza oficial de ____.",
-    "¡¡¡Haga clic aquí para ____!!!",
-    "¡Mira, tío! Llamo a este paso de baile «____».",
-    "El ____ de mi casa es particular.",
-    "MediaMarkt: Yo no soy ____.",
-    "La autopsia reveló que la verdadera causa de la muerte fue ____.",
-    "El Vaticano acaba de prohibir oficialmente ____.",
-    "Nunca imaginé acabar en comisaría por ____.",
-    "El peor regalo de boda posible es ____.",
-    "Mi abogado me ha recomendado no mencionar ____.",
-    "La IA decidió exterminar a la humanidad después de descubrir ____.",
-    "En mi esquela solo pondrá: «Murió por culpa de ____».",
-    "Durante la reunión de vecinos todo iba bien hasta que apareció ____.",
-    "El documental termina revelando ____.",
-    "El único superviviente afirma que todo empezó con ____.",
-    "En Recursos Humanos llaman «incidente aislado» a ____.",
-    "El nuevo plan económico del Gobierno consiste básicamente en ____.",
-    "Mi psicólogo dice que debería dejar de fantasear con ____.",
-    "El sacerdote interrumpió la boda para advertirnos sobre ____.",
-    "Lo peor de heredar una funeraria es tener que explicar ____.",
-    "El juez suspendió la vista al encontrarse con ____.",
-    "El aeropuerto cerró tres horas por culpa de ____.",
-    "Mi banco me ofrece un 2 % de descuento si acepto ____.",
-    "El rector prometió investigar quién introdujo ____ en el campus.",
-    "El detective supo que algo iba mal cuando encontró ____.",
-    "El seguro no cubre incendios, inundaciones ni ____.",
-    "El nuevo reality encierra a doce famosos con ____.",
-    "En la cárcel aprendí dos cosas: respeto y ____.",
-    "El ministro dimitió tras filtrarse una foto suya con ____.",
-    "El funeral fue precioso hasta que alguien encendió ____.",
-    "Mi familia dejó de hablarme después de que confesara ____.",
-    "El notario se negó a certificar ____.",
-    "El mayor avance científico del siglo ha sido ____.",
-    "El plan de marketing fracasó porque incluía demasiado ____.",
-    "La policía encontró ____ oculto bajo el altar.",
-    "El alcalde inauguró oficialmente ____.",
-    "En la entrevista de trabajo me preguntaron si tenía experiencia con ____.",
-    "El cirujano dijo «esto no estaba aquí ayer» al ver ____.",
-    "El divorcio se complicó cuando ambos reclamamos la custodia de ____.",
-    "El multimillonario prometió donar su fortuna a ____.",
-    "La secta perdió credibilidad cuando su mesías apareció con ____.",
-    "En la cena de empresa, el director general brindó por ____.",
-    "El profesor suspendió a toda la clase por dibujar ____ en el examen.",
-    "El mayor secreto de la monarquía no es la corrupción, sino ____.",
-    "El comunismo habría funcionado de no ser por ____.",
-    "El capitalismo tardío nos ha regalado ____.",
-    "El nuevo fármaco cura la ansiedad, pero provoca ____.",
-    "El becario recibió acceso total a ____.",
-    "El concurso público fue adjudicado a una empresa especializada en ____.",
-    "El científico loco gritó «¡por fin!» al crear ____.",
-    "El portavoz pidió calma mientras detrás de él ocurría ____.",
-    "El Papa ha bendecido oficialmente ____.",
-    "El hospital privatizó ____ para mejorar la eficiencia.",
-    "Mi vecino ha vuelto a denunciarme por ____.",
-    "La policía secreta lleva meses investigando ____.",
-    "El informativo abrió con una exclusiva sobre ____.",
-    "El entrenador atribuyó la derrota a ____.",
-    "En la aduana encontraron ____ dentro de mi maleta.",
-    "El terapeuta de pareja recomendó incorporar ____ a la relación.",
-    "El testamento incluía una última condición: sobrevivir a ____.",
-    "El abogado del Estado calificó ____ de simple malentendido.",
-    "El nuevo videojuego permite gestionar ____ con micropagos.",
-    "La boda real quedó eclipsada por ____.",
-    "El detective privado aceptó el caso al escuchar hablar de ____.",
-    "La empresa anunció despidos mientras presentaba ____.",
-    "El candidato ganó las elecciones prometiendo ____.",
-    "El funeral tuvo que repetirse debido a ____.",
-    "El circo quebró después de sustituir a los payasos por ____.",
-    "Mi madre siempre dijo que acabaría como ____.",
-    "El experimento fue cancelado cuando empezó a producir ____.",
-    "El banco embargó mi casa, mi coche y ____.",
-    "El aeropuerto ofrece ahora una cola rápida para personas con ____.",
-    "El gurú financiero recomienda invertir todos tus ahorros en ____.",
-    "El programa infantil fue retirado tras emitir accidentalmente ____.",
-    "El juez preguntó si alguien podía explicar por qué había ____ en la sala.",
-    "El sacerdote aseguró que ____ no aparece en la Biblia por casualidad.",
-    "El reality alcanzó récord de audiencia gracias a ____.",
-    "El comité ético aprobó ____ por siete votos contra seis.",
-    "El nuevo director del hospital quiere reemplazar las ambulancias por ____.",
-    "El espía fue descubierto por su extraña obsesión con ____.",
-    "La funeraria ofrece ahora un paquete premium con ____.",
-    "El ayuntamiento ha declarado ____ patrimonio cultural.",
-    "El profesor de filosofía resumió la existencia humana como ____.",
-    "El sindicato convocó una huelga para exigir ____.",
-    "El magnate tecnológico presentó ____ como solución al hambre mundial.",
-    "En la cena de Navidad nadie esperaba que el abuelo sacara ____.",
-    "El psicólogo infantil no supo cómo reaccionar ante ____.",
-    "La familia real negó cualquier relación con ____.",
-    "El tribunal consideró que ____ era jurídicamente inevitable.",
-    "La nueva app promete encontrar pareja mediante ____.",
-    "El seguro de vida duplicó la prima después de conocer ____.",
-    "El cura joven conquistó a la parroquia hablando de ____.",
-    "El plan de evacuación falló por culpa de ____.",
-    "La farmacéutica ocultó que su medicamento contenía ____.",
-    "En el juicio, la defensa presentó ____ como prueba definitiva.",
-    "El influencer perdió todos sus patrocinadores al recomendar ____.",
-    "El ministerio creó una comisión para estudiar ____.",
-    "El último deseo del condenado fue ver ____.",
-    "El detective encontró la pista clave dentro de ____.",
-    "El jefe de Recursos Humanos sonrió antes de anunciar ____.",
-    "Mi casero dice que la humedad es en realidad ____.",
-    "El banco central intenta frenar la inflación mediante ____.",
-    "La universidad inauguró una cátedra dedicada a ____.",
-    "El presidente aseguró que nadie podía prever ____.",
-    "El manual de bienvenida de la empresa empieza con: «Ante todo, evita ____».",
-        "La autopsia reveló que la verdadera causa de la muerte fue ____.",
-    "El Vaticano acaba de prohibir oficialmente ____.",
-    "Nunca imaginé acabar en comisaría por ____.",
-    "El peor regalo de boda posible es ____.",
-    "Mi abogado me ha recomendado no mencionar ____.",
-    "La IA decidió exterminar a la humanidad después de descubrir ____.",
-    "En mi esquela solo pondrá: «Murió por culpa de ____».",
-    "Durante la reunión de vecinos todo iba bien hasta que apareció ____.",
-    "El documental termina revelando ____.",
-    "El único superviviente afirma que todo empezó con ____.",
-    "En Recursos Humanos llaman «incidente aislado» a ____.",
-    "El nuevo plan económico del Gobierno consiste básicamente en ____.",
-    "Mi psicólogo dice que debería dejar de fantasear con ____.",
-    "El sacerdote interrumpió la boda para advertirnos sobre ____.",
-    "Lo peor de heredar una funeraria es tener que explicar ____.",
-    "El juez suspendió la vista al encontrarse con ____.",
-    "El aeropuerto cerró tres horas por culpa de ____.",
-    "Mi banco me ofrece un 2 % de descuento si acepto ____.",
-    "El rector prometió investigar quién introdujo ____ en el campus.",
-    "El detective supo que algo iba mal cuando encontró ____.",
-    "El seguro no cubre incendios, inundaciones ni ____.",
-    "El nuevo reality encierra a doce famosos con ____.",
-    "En la cárcel aprendí dos cosas: respeto y ____.",
-    "El ministro dimitió tras filtrarse una foto suya con ____.",
-    "El funeral fue precioso hasta que alguien encendió ____.",
-    "Mi familia dejó de hablarme después de que confesara ____.",
-    "El notario se negó a certificar ____.",
-    "El mayor avance científico del siglo ha sido ____.",
-    "El plan de marketing fracasó porque incluía demasiado ____.",
-    "La policía encontró ____ oculto bajo el altar.",
-    "El alcalde inauguró oficialmente ____.",
-    "En la entrevista de trabajo me preguntaron si tenía experiencia con ____.",
-    "El cirujano dijo «esto no estaba aquí ayer» al ver ____.",
-    "El divorcio se complicó cuando ambos reclamamos la custodia de ____.",
-    "El multimillonario prometió donar su fortuna a ____.",
-    "La secta perdió credibilidad cuando su mesías apareció con ____.",
-    "En la cena de empresa, el director general brindó por ____.",
-    "El profesor suspendió a toda la clase por dibujar ____ en el examen.",
-    "El mayor secreto de la monarquía no es la corrupción, sino ____.",
-    "El comunismo habría funcionado de no ser por ____.",
-    "El capitalismo tardío nos ha regalado ____.",
-    "El nuevo fármaco cura la ansiedad, pero provoca ____.",
-    "El becario recibió acceso total a ____.",
-    "El concurso público fue adjudicado a una empresa especializada en ____.",
-    "El científico loco gritó «¡por fin!» al crear ____.",
-    "El portavoz pidió calma mientras detrás de él ocurría ____.",
-    "El Papa ha bendecido oficialmente ____.",
-    "El hospital privatizó ____ para mejorar la eficiencia.",
-    "Mi vecino ha vuelto a denunciarme por ____.",
-    "La policía secreta lleva meses investigando ____.",
-    "El informativo abrió con una exclusiva sobre ____.",
-    "El entrenador atribuyó la derrota a ____.",
-    "En la aduana encontraron ____ dentro de mi maleta.",
-    "El terapeuta de pareja recomendó incorporar ____ a la relación.",
-    "El testamento incluía una última condición: sobrevivir a ____.",
-    "El abogado del Estado calificó ____ de simple malentendido.",
-    "El nuevo videojuego permite gestionar ____ con micropagos.",
-    "La boda real quedó eclipsada por ____.",
-    "El detective privado aceptó el caso al escuchar hablar de ____.",
-    "La empresa anunció despidos mientras presentaba ____.",
-    "El candidato ganó las elecciones prometiendo ____.",
-    "El funeral tuvo que repetirse debido a ____.",
-    "El circo quebró después de sustituir a los payasos por ____.",
-    "Mi madre siempre dijo que acabaría como ____.",
-    "El experimento fue cancelado cuando empezó a producir ____.",
-    "El banco embargó mi casa, mi coche y ____.",
-    "El aeropuerto ofrece ahora una cola rápida para personas con ____.",
-    "El gurú financiero recomienda invertir todos tus ahorros en ____.",
-    "El programa infantil fue retirado tras emitir accidentalmente ____.",
-    "El juez preguntó si alguien podía explicar por qué había ____ en la sala.",
-    "El sacerdote aseguró que ____ no aparece en la Biblia por casualidad.",
-    "El reality alcanzó récord de audiencia gracias a ____.",
-    "El comité ético aprobó ____ por siete votos contra seis.",
-    "El nuevo director del hospital quiere reemplazar las ambulancias por ____.",
-    "El espía fue descubierto por su extraña obsesión con ____.",
-    "La funeraria ofrece ahora un paquete premium con ____.",
-    "El ayuntamiento ha declarado ____ patrimonio cultural.",
-    "El profesor de filosofía resumió la existencia humana como ____.",
-    "El sindicato convocó una huelga para exigir ____.",
-    "El magnate tecnológico presentó ____ como solución al hambre mundial.",
-    "En la cena de Navidad nadie esperaba que el abuelo sacara ____.",
-    "El psicólogo infantil no supo cómo reaccionar ante ____.",
-    "La familia real negó cualquier relación con ____.",
-    "El tribunal consideró que ____ era jurídicamente inevitable.",
-    "La nueva app promete encontrar pareja mediante ____.",
-    "El seguro de vida duplicó la prima después de conocer ____.",
-    "El cura joven conquistó a la parroquia hablando de ____.",
-    "El plan de evacuación falló por culpa de ____.",
-    "La farmacéutica ocultó que su medicamento contenía ____.",
-    "En el juicio, la defensa presentó ____ como prueba definitiva.",
-    "El influencer perdió todos sus patrocinadores al recomendar ____.",
-    "El ministerio creó una comisión para estudiar ____.",
-    "El último deseo del condenado fue ver ____.",
-    "El detective encontró la pista clave dentro de ____.",
-    "El jefe de Recursos Humanos sonrió antes de anunciar ____.",
-    "Mi casero dice que la humedad es en realidad ____.",
-    "El banco central intenta frenar la inflación mediante ____.",
-    "La universidad inauguró una cátedra dedicada a ____.",
-    "El presidente aseguró que nadie podía prever ____.",
-    "El manual de bienvenida de la empresa empieza con: «Ante todo, evita ____»."
+    {
+      "text": "¡Oye, Reddit! Soy ____. Pregúntame lo que quieras.",
+      "pick": 1
+    },
+    {
+      "text": "¡Presentamos Béisbol Extremo! ¡Es béisbol, pero con ____!",
+      "pick": 1
+    },
+    {
+      "text": "¿Cuál es el placer oculto de Batman?",
+      "pick": 1
+    },
+    {
+      "text": "La normativa de Aena ahora prohíbe ____ en aviones.",
+      "pick": 1
+    },
+    {
+      "text": "Lo nuevo de J.K. Rowling: Harry Potter y la cámara de ____.",
+      "pick": 1
+    },
+    {
+      "text": "Correcto, he matado a ____. ¿Cómo, preguntas? ____.",
+      "pick": 2
+    },
+    {
+      "text": "Perdón, profe, no he hecho los deberes por ____.",
+      "pick": 1
+    },
+    {
+      "text": "Y el Óscar a ____ es para ____.",
+      "pick": 2
+    },
+    {
+      "text": "Tío, no vayas a ese baño. Hay ____ ahí.",
+      "pick": 1
+    },
+    {
+      "text": "¿Cómo perdí mi virginidad?",
+      "pick": 1
+    },
+    {
+      "text": "Qué pena que los niños de hoy en día se estén involucrando en ____.",
+      "pick": 1
+    },
+    {
+      "text": "Paso 1: ____. Paso 2: ____. Paso 3: «Profit».",
+      "pick": 2
+    },
+    {
+      "text": "____. ¡Apuesto a que no puedes tomar sólo uno!",
+      "pick": 1
+    },
+    {
+      "text": "Niños, no necesito drogas para colocarme. Ya lo hago con ____.",
+      "pick": 1
+    },
+    {
+      "text": "Para mi siguiente truco, sacaré ____ de ____.",
+      "pick": 2
+    },
+    {
+      "text": "Mariano Rajoy no puede correrse sin ____.",
+      "pick": 1
+    },
+    {
+      "text": "En la nueva película original de Disney Channel, Hannah Montana se enfrenta con ____ por primera vez.",
+      "pick": 1
+    },
+    {
+      "text": "¿Cuál es mi poder secreto?",
+      "pick": 1
+    },
+    {
+      "text": "Esta semana me pongo a dieta. Sólo zumo de col y ____.",
+      "pick": 1
+    },
+    {
+      "text": "____ + ____ = ____.",
+      "pick": 3
+    },
+    {
+      "text": "Cuando el faraón se mantuvo impasible, Moisés invocó una plaga de ____.",
+      "pick": 1
+    },
+    {
+      "text": "Por una vez, me gustaría oírte decir: «Gracias, mamá. Gracias por ____».",
+      "pick": 1
+    },
+    {
+      "text": "Papi, ¿por qué mami está llorando?",
+      "pick": 1
+    },
+    {
+      "text": "Mientras flipaba con ácido, ____ se convirtió en ____.",
+      "pick": 2
+    },
+    {
+      "text": "El 50 % de los matrimonios terminan en ____.",
+      "pick": 1
+    },
+    {
+      "text": "Queridos compatriotas: ¡Antes de que termine la década, haremos llegar ____ a la luna!",
+      "pick": 1
+    },
+    {
+      "text": "Esta temporada en El Liceo, la clásica obra existencial de Samuel Beckett: Esperando a ____.",
+      "pick": 1
+    },
+    {
+      "text": "En lugar de carbón, los Reyes Magos ahora traen a los que se portan mal ____.",
+      "pick": 1
+    },
+    {
+      "text": "La vida de los indígenas cambió para siempre cuando el hombre blanco les presentó ____.",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué está usando el Ministerio de Educación para incentivar a los estudiantes de barrios humildes a triunfar?",
+      "pick": 1
+    },
+    {
+      "text": "Quizá nació con ello. Quizá es ____.",
+      "pick": 1
+    },
+    {
+      "text": "¿En qué está pensando George W. Bush ahora mismo?",
+      "pick": 1
+    },
+    {
+      "text": "Me llamo Peter Parker. Me picó una araña radiactiva, y ahora soy ____.",
+      "pick": 1
+    },
+    {
+      "text": "____ es una pendiente resbaladiza que lleva a ____.",
+      "pick": 2
+    },
+    {
+      "text": "¿Por qué me duele todo?",
+      "pick": 1
+    },
+    {
+      "text": "Una cena romántica a la luz de las velas estaría incompleta sin ____.",
+      "pick": 1
+    },
+    {
+      "text": "¡Acabo de ver este perturbador vídeo! ¡¡Retweet, por favor!! ____ #stop",
+      "pick": 1
+    },
+    {
+      "text": "¡Tip! Cuando tu marido te pida que le hagas una mamada, sorpréndele con ____ en su lugar.",
+      "pick": 1
+    },
+    {
+      "text": "La excursión del colegio ha sido completamente arruinada por ____.",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué es el mejor amigo de una chica?",
+      "pick": 1
+    },
+    {
+      "text": "Escribo al programa porque estoy teniendo problemas con ____ y me gustaría tu consejo.",
+      "pick": 1
+    },
+    {
+      "text": "En el nuevo thriller de Jordan Peele, una joven familia descubre que ____ había sido ____ todo este tiempo.",
+      "pick": 2
+    },
+    {
+      "text": "Cuando sea presidente, crearé el Ministerio de ____.",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué me esconden mis padres?",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué es lo que siempre le da vidilla a la fiesta?",
+      "pick": 1
+    },
+    {
+      "text": "SI te gusta ____, PUEDE QUE SEAS UN CATETO.",
+      "pick": 1
+    },
+    {
+      "text": "Haz un haiku.",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué hizo de mi primer beso tan incómodo?",
+      "pick": 1
+    },
+    {
+      "text": "¡Hola, bienvenidos a Foster’s Hollywood! ¿Queréis empezar bien la noche con ____?",
+      "pick": 1
+    },
+    {
+      "text": "Tengo 99 problemas, pero ____ no es uno.",
+      "pick": 1
+    },
+    {
+      "text": "____. ¡Es una trampa!",
+      "pick": 1
+    },
+    {
+      "text": "El nuevo reality de Telecinco va de doce solteras buenorras viviendo con ____.",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué encontraría la yaya perturbador y a la vez extrañamente encantador?",
+      "pick": 1
+    },
+    {
+      "text": "____. Eso fue la hostia.",
+      "pick": 1
+    },
+    {
+      "text": "Nunca entendí ____ hasta que encontré ____.",
+      "pick": 2
+    },
+    {
+      "text": "Durante el sexo, me gusta pensar en ____.",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué terminó con mi última relación?",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué es ese sonido?",
+      "pick": 1
+    },
+    {
+      "text": "Hmm, eh, chicos, sé que ha sido idea mía, pero estoy teniendo serias dudas sobre ____.",
+      "pick": 1
+    },
+    {
+      "text": "¿Por qué estoy pegajoso?",
+      "pick": 1
+    },
+    {
+      "text": "No soy médico, pero estoy seguro de que padeces lo que se dice «____».",
+      "pick": 1
+    },
+    {
+      "text": "¿De qué hay un montón en el paraíso?",
+      "pick": 1
+    },
+    {
+      "text": "Tras cuatro discos de platino y tres Grammys, es hora de volver a mis raíces, a lo que me inspiró a hacer música en un primer lugar: ____.",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué es lo que siempre te pone cachondo?",
+      "pick": 1
+    },
+    {
+      "text": "Decían que estábamos locos. Decían que no podíamos meter ____ dentro de ____. Estaban equivocados.",
+      "pick": 2
+    },
+    {
+      "text": "Divinity presenta «____: la historia de ____».",
+      "pick": 2
+    },
+    {
+      "text": "____: probado en niños, aprobado por las madres.",
+      "pick": 1
+    },
+    {
+      "text": "¿Por qué no puedo dormir por las noches?",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué es ese olor?",
+      "pick": 1
+    },
+    {
+      "text": "¿Por qué está Brett tan sudoroso?",
+      "pick": 1
+    },
+    {
+      "text": "Así es como acaba el mundo. Así es como acaba el mundo. No con una explosión sino con ____.",
+      "pick": 1
+    },
+    {
+      "text": "Próximamente en la Gran Vía de Madrid, ____: el musical.",
+      "pick": 1
+    },
+    {
+      "text": "He aquí la iglesia. He aquí el campanario. Abre las puertas. Y encontrarás ____.",
+      "pick": 1
+    },
+    {
+      "text": "Pero antes de matarlo, Sr. Bond, me gustaría enseñarle ____.",
+      "pick": 1
+    },
+    {
+      "text": "Un reciente estudio de laboratorio demuestra que los estudiantes de grado tienen un 50 % menos de sexo tras ser expuestos a ____.",
+      "pick": 1
+    },
+    {
+      "text": "¡Presentamos al increíble dúo superhéroe y compañero! ¡Son ____ y ____!",
+      "pick": 2
+    },
+    {
+      "text": "A continuación, en DAZN: Campeonato Mundial de ____.",
+      "pick": 1
+    },
+    {
+      "text": "Cuando sea multimillonario, levantaré una estatua de 20 metros en conmemoración de ____.",
+      "pick": 1
+    },
+    {
+      "text": "Los historiadores militares recuerdan a Alejandro Magno por su brillante uso de ____ contra los persas.",
+      "pick": 1
+    },
+    {
+      "text": "¡La guerra! ¿Para qué es buena?",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué me produce gases incontrolables?",
+      "pick": 1
+    },
+    {
+      "text": "El nuevo SEAT Tarraco. Con la potencia y el espacio para llevar ____ a todos lados.",
+      "pick": 1
+    },
+    {
+      "text": "Bueno, si me permiten, caballeros, tengo una cita con ____.",
+      "pick": 1
+    },
+    {
+      "text": "La medicina alternativa ahora contempla los poderes curativos de ____.",
+      "pick": 1
+    },
+    {
+      "text": "Como madre de cinco chicos revoltosos, estoy acostumbrada a ____.",
+      "pick": 1
+    },
+    {
+      "text": "____. Chócala.",
+      "pick": 1
+    },
+    {
+      "text": "Hoy, en el programa de Ana Rosa: «¡Ayuda! ¡Mi hijo es ____!»",
+      "pick": 1
+    },
+    {
+      "text": "Voy haciendo con un poco de ayuda de ____.",
+      "pick": 1
+    },
+    {
+      "text": "★✩✩✩✩ ¡NO venir aquí! ¡Había ____ en mi fetuccini alfredo!",
+      "pick": 1
+    },
+    {
+      "text": "Bebo para olvidar ____.",
+      "pick": 1
+    },
+    {
+      "text": "Soy LeBron James, y cuando no estoy lanzando mates, me encanta ____.",
+      "pick": 1
+    },
+    {
+      "text": "¿Qué hace que valga la pena vivir?",
+      "pick": 1
+    },
+    {
+      "text": "Telepizza: El secreto está en ____.",
+      "pick": 1
+    },
+    {
+      "text": "Sr. y Sra. Díaz, les hemos llamado porque estamos preocupados por Cintia. ¿Son conscientes de que su hija es ____?",
+      "pick": 1
+    },
+    {
+      "text": "Si no puedes estar con quien amas, ama a ____.",
+      "pick": 1
+    },
+    {
+      "text": "Presentado por Estrella Galicia®, cerveza oficial de ____.",
+      "pick": 1
+    },
+    {
+      "text": "¡¡¡Haga clic aquí para ____!!!",
+      "pick": 1
+    },
+    {
+      "text": "¡Mira, tío! Llamo a este paso de baile «____».",
+      "pick": 1
+    },
+    {
+      "text": "El ____ de mi casa es particular.",
+      "pick": 1
+    },
+    {
+      "text": "MediaMarkt: Yo no soy ____.",
+      "pick": 1
+    },
+    {
+      "text": "La autopsia reveló que la verdadera causa de la muerte fue ____.",
+      "pick": 1
+    },
+    {
+      "text": "El Vaticano acaba de prohibir oficialmente ____.",
+      "pick": 1
+    },
+    {
+      "text": "Nunca imaginé acabar en comisaría por ____.",
+      "pick": 1
+    },
+    {
+      "text": "El peor regalo de boda posible es ____.",
+      "pick": 1
+    },
+    {
+      "text": "Mi abogado me ha recomendado no mencionar ____.",
+      "pick": 1
+    },
+    {
+      "text": "La IA decidió exterminar a la humanidad después de descubrir ____.",
+      "pick": 1
+    },
+    {
+      "text": "En mi esquela solo pondrá: «Murió por culpa de ____».",
+      "pick": 1
+    },
+    {
+      "text": "Durante la reunión de vecinos todo iba bien hasta que apareció ____.",
+      "pick": 1
+    },
+    {
+      "text": "El documental termina revelando ____.",
+      "pick": 1
+    },
+    {
+      "text": "El único superviviente afirma que todo empezó con ____.",
+      "pick": 1
+    },
+    {
+      "text": "En Recursos Humanos llaman «incidente aislado» a ____.",
+      "pick": 1
+    },
+    {
+      "text": "El nuevo plan económico del Gobierno consiste básicamente en ____.",
+      "pick": 1
+    },
+    {
+      "text": "Mi psicólogo dice que debería dejar de fantasear con ____.",
+      "pick": 1
+    },
+    {
+      "text": "El sacerdote interrumpió la boda para advertirnos sobre ____.",
+      "pick": 1
+    },
+    {
+      "text": "Lo peor de heredar una funeraria es tener que explicar ____.",
+      "pick": 1
+    },
+    {
+      "text": "El juez suspendió la vista al encontrarse con ____.",
+      "pick": 1
+    },
+    {
+      "text": "El aeropuerto cerró tres horas por culpa de ____.",
+      "pick": 1
+    },
+    {
+      "text": "Mi banco me ofrece un 2 % de descuento si acepto ____.",
+      "pick": 1
+    },
+    {
+      "text": "El rector prometió investigar quién introdujo ____ en el campus.",
+      "pick": 1
+    },
+    {
+      "text": "El detective supo que algo iba mal cuando encontró ____.",
+      "pick": 1
+    },
+    {
+      "text": "El seguro no cubre incendios, inundaciones ni ____.",
+      "pick": 1
+    },
+    {
+      "text": "El nuevo reality encierra a doce famosos con ____.",
+      "pick": 1
+    },
+    {
+      "text": "En la cárcel aprendí dos cosas: respeto y ____.",
+      "pick": 1
+    },
+    {
+      "text": "El ministro dimitió tras filtrarse una foto suya con ____.",
+      "pick": 1
+    },
+    {
+      "text": "El funeral fue precioso hasta que alguien encendió ____.",
+      "pick": 1
+    },
+    {
+      "text": "Mi familia dejó de hablarme después de que confesara ____.",
+      "pick": 1
+    },
+    {
+      "text": "El notario se negó a certificar ____.",
+      "pick": 1
+    },
+    {
+      "text": "El mayor avance científico del siglo ha sido ____.",
+      "pick": 1
+    },
+    {
+      "text": "El plan de marketing fracasó porque incluía demasiado ____.",
+      "pick": 1
+    },
+    {
+      "text": "La policía encontró ____ oculto bajo el altar.",
+      "pick": 1
+    },
+    {
+      "text": "El alcalde inauguró oficialmente ____.",
+      "pick": 1
+    },
+    {
+      "text": "En la entrevista de trabajo me preguntaron si tenía experiencia con ____.",
+      "pick": 1
+    },
+    {
+      "text": "El cirujano dijo «esto no estaba aquí ayer» al ver ____.",
+      "pick": 1
+    },
+    {
+      "text": "El divorcio se complicó cuando ambos reclamamos la custodia de ____.",
+      "pick": 1
+    },
+    {
+      "text": "El multimillonario prometió donar su fortuna a ____.",
+      "pick": 1
+    },
+    {
+      "text": "La secta perdió credibilidad cuando su mesías apareció con ____.",
+      "pick": 1
+    },
+    {
+      "text": "En la cena de empresa, el director general brindó por ____.",
+      "pick": 1
+    },
+    {
+      "text": "El profesor suspendió a toda la clase por dibujar ____ en el examen.",
+      "pick": 1
+    },
+    {
+      "text": "El mayor secreto de la monarquía no es la corrupción, sino ____.",
+      "pick": 1
+    },
+    {
+      "text": "El comunismo habría funcionado de no ser por ____.",
+      "pick": 1
+    },
+    {
+      "text": "El capitalismo tardío nos ha regalado ____.",
+      "pick": 1
+    },
+    {
+      "text": "El nuevo fármaco cura la ansiedad, pero provoca ____.",
+      "pick": 1
+    },
+    {
+      "text": "El becario recibió acceso total a ____.",
+      "pick": 1
+    },
+    {
+      "text": "El concurso público fue adjudicado a una empresa especializada en ____.",
+      "pick": 1
+    },
+    {
+      "text": "El científico loco gritó «¡por fin!» al crear ____.",
+      "pick": 1
+    },
+    {
+      "text": "El portavoz pidió calma mientras detrás de él ocurría ____.",
+      "pick": 1
+    },
+    {
+      "text": "El Papa ha bendecido oficialmente ____.",
+      "pick": 1
+    },
+    {
+      "text": "El hospital privatizó ____ para mejorar la eficiencia.",
+      "pick": 1
+    },
+    {
+      "text": "Mi vecino ha vuelto a denunciarme por ____.",
+      "pick": 1
+    },
+    {
+      "text": "La policía secreta lleva meses investigando ____.",
+      "pick": 1
+    }
   ],
   "white": [
     "Silencio.",
@@ -851,556 +1151,6 @@
     "El alcalde inaugurando una grieta.",
     "Un detective alérgico a las pistas.",
     "Un espía con su nombre bordado.",
-    "Un funeral con control de alcoholemia.",
-    "Una empresa familiar sin familia ni empresa.",
-    "El jefe anunciando resiliencia desde las Maldivas.",
-    "Un psicólogo tomando notas para su novela.",
-    "Una universidad vendiendo esperanza a plazos.",
-    "El profesor que nunca leyó el temario.",
-    "Un examen corregido por inteligencia artificial resentida.",
-    "El rector huyendo con la caja común.",
-    "Una tesis doctoral sobre absolutamente nada.",
-    "Un científico lamiendo la muestra.",
-    "Una vacuna con condiciones de uso.",
-    "El placebo más caro del mercado.",
-    "Una farmacéutica recomendando paciencia.",
-    "Un médico buscando síntomas en internet.",
-    "Una enfermera con cinco cafés y cero esperanza.",
-    "El cirujano diciendo «ups» con voz tranquila.",
-    "Una prótesis con anuncios emergentes.",
-    "El consentimiento informado escrito en latín.",
-    "Un cadáver reclamando la hoja de quejas.",
-    "Una funeraria con programa de fidelización.",
-    "El ataúd ecológico que se desmonta solo.",
-    "Un entierro con aparcacoches.",
-    "Las cenizas equivocadas en la urna correcta.",
-    "Un epitafio patrocinado por el banco.",
-    "El difunto llegando tarde a su funeral.",
-    "Una viuda preguntando por la contraseña.",
-    "El organista tocando reguetón por error.",
-    "Un pésame copiado y pegado.",
-    "Una corona de flores con factura pendiente.",
-    "El seguro declarando el cadáver preexistente.",
-    "Un abogado defensor demasiado sincero.",
-    "El fiscal con una presentación de PowerPoint.",
-    "Un jurado elegido por sorteo de Instagram.",
-    "El testigo protegido dando entrevistas.",
-    "Una confesión con faltas de ortografía.",
-    "El acusado pidiendo una segunda opinión.",
-    "Una sentencia redactada por ChatGPT enfadado.",
-    "El juez cobrando entrada.",
-    "Un juicio patrocinado por una marca de martillos.",
-    "El abogado llamando «estrategia» al pánico.",
-    "Una coartada impresa en una taza.",
-    "El sospechoso explicándolo todo con astrología.",
-    "Un policía infiltrado con uniforme.",
-    "La sirena de policía usada como despertador.",
-    "Una redada anunciada por correo certificado.",
-    "El ladrón denunciando malas condiciones laborales.",
-    "Un interrogatorio con catering vegano.",
-    "Una celda con gastos de comunidad.",
-    "El preso organizando Recursos Humanos.",
-    "Una fuga gestionada por una consultora.",
-    "El alcaide vendiendo entradas.",
-    "Un soborno declarado en la renta.",
-    "Corrupción con sello oficial.",
-    "Una mordida con IVA incluido.",
-    "El maletín equivocado lleno de tuppers.",
-    "Un político prometiendo leer el informe.",
-    "El asesor que asesora no preguntar.",
-    "Una rueda de prensa sin ruedas ni prensa.",
-    "El portavoz sudando en alta definición.",
-    "Un debate electoral moderado por la suegra.",
-    "El candidato saludando a una farola.",
-    "Una campaña financiada con monedas del sofá.",
-    "El ministro de algo que nadie recuerda.",
-    "Una dimisión programada para después del puente.",
-    "El presidente inaugurando su propia estatua.",
-    "Una ley escrita durante una cena.",
-    "El decreto que prohíbe los decretos.",
-    "Un referéndum decidido a piedra, papel o tijera.",
-    "La monarquía descubriendo Bizum.",
-    "Un príncipe con contrato temporal.",
-    "La reina madre en modo incógnito.",
-    "Un discurso real escrito por un becario republicano.",
-    "Un trono con ruedas de oficina.",
-    "La corona guardada en una caja de zapatos.",
-    "El himno nacional tocado con kazoo.",
-    "Un golpe de Estado mal aparcado.",
-    "Una revolución con formulario previo.",
-    "El proletariado premium.",
-    "Un millonario jugando a ser pobre los domingos.",
-    "El capitalismo ofreciendo versión gratuita con anuncios.",
-    "El comunismo con zona VIP.",
-    "Una huelga patrocinada por la empresa.",
-    "El sindicato vendiendo camisetas fabricadas por niños.",
-    "Un banco llorando por sus sentimientos.",
-    "La hipoteca hereditaria.",
-    "Un cajero cobrando entrada.",
-    "El interés compuesto por puro rencor.",
-    "Un fondo buitre con departamento de ternura.",
-    "El director del banco pidiendo monedas.",
-    "Una tarjeta sin límite moral.",
-    "El préstamo que incluye a tus nietos.",
-    "Un economista sorprendido por la economía.",
-    "La inflación comiéndose el ticket.",
-    "Una inmobiliaria midiendo en pasos.",
-    "El piso interior con vistas al interior.",
-    "Una habitación compartida con el propietario.",
-    "El casero viviendo dentro del armario.",
-    "Un alquiler que incluye oxígeno básico.",
-    "El agente inmobiliario diciendo «acogedor» ante un ataúd.",
-    "Una derrama por existir.",
-    "El presidente de la comunidad con guardaespaldas.",
-    "Una reunión de vecinos con casco obligatorio.",
-    "El vecino taladrando por motivos espirituales.",
-    "Una cámara de seguridad apuntando a otra cámara.",
-    "El ascensor que cobra propina.",
-    "Un aeropuerto sin aviones pero con tiendas.",
-    "El control de seguridad revisando tus traumas.",
-    "Una maleta que sabe demasiado.",
-    "El piloto preguntando quién tiene carnet.",
-    "Una aerolínea cobrando por aterrizar.",
-    "El copiloto leyendo las instrucciones.",
-    "Un vuelo con escala en el purgatorio.",
-    "El pasajero aplaudiendo antes del despegue.",
-    "Una turbulencia con patrocinador.",
-    "El equipaje llegando emocionalmente cambiado.",
-    "Un hotel con vistas a otro hotel.",
-    "El minibar hipotecado.",
-    "Un guía turístico perdido.",
-    "El crucero de los divorciados.",
-    "Una excursión organizada por fugitivos.",
-    "El turista que denuncia la cultura local.",
-    "Una luna de miel con abogado incluido.",
-    "Un pasaporte dibujado a mano.",
-    "El mapa del tesoro fiscal.",
-    "Una aduana atendida por tu ex.",
-    "Un influencer descubriendo el trabajo manual.",
-    "Un famoso fingiendo normalidad en cámara.",
-    "El representante hablando por ambas partes.",
-    "Una disculpa pública monetizada.",
-    "Un reality sin cámaras pero con trauma.",
-    "Doce concursantes y un solo baño.",
-    "El programa de talentos sin talento.",
-    "Una entrevista pactada que sale bien por accidente.",
-    "El presentador leyendo el mensaje privado.",
-    "Un micrófono abierto y una carrera cerrada.",
-    "El aplauso enlatado pidiendo aumento.",
-    "Una exclusiva que ya sabía todo el barrio.",
-    "El documental que culpa al montaje.",
-    "Una celebridad adoptando una causa por contrato.",
-    "El paparazzi fotografiándose a sí mismo.",
-    "Un videojuego sobre rellenar formularios.",
-    "El jefe final de Hacienda.",
-    "Una consola confiscada como prueba judicial.",
-    "Un tutorial que termina en divorcio.",
-    "El personaje secundario solicitando vacaciones.",
-    "Una microtransacción para respirar.",
-    "El modo historia de una oposición pública.",
-    "Un servidor caído durante el apocalipsis.",
-    "La inteligencia artificial con complejo de funcionario.",
-    "Un robot sindicalizado.",
-    "El algoritmo recomendando terapia.",
-    "Una contraseña escrita en la lápida.",
-    "El antivirus que exige rescate.",
-    "Una impresora con instinto homicida.",
-    "El cable que solo funciona bajo juramento.",
-    "Una actualización obligatoria durante la operación.",
-    "El dron entregando una citación judicial.",
-    "Un chatbot confesando delitos ajenos.",
-    "La nube perdiendo tus recuerdos.",
-    "Un científico con demasiada confianza.",
-    "El experimento que desarrolla abogado propio.",
-    "Una rata de laboratorio con doctorado.",
-    "El acelerador de partículas en modo ahorro.",
-    "Una fórmula secreta escrita en una servilleta.",
-    "El comité ético de vacaciones.",
-    "Una clonación con pequeños defectos administrativos.",
-    "El paciente cero vendiendo merchandising.",
-    "Un microscopio apuntando al problema equivocado.",
-    "La gravedad solicitando teletrabajo.",
-    "Un meteorito con permiso de obras.",
-    "El fin del mundo aplazado por lluvia.",
-    "Una catástrofe con rueda de prensa.",
-    "El volcán declarado zona de bajas emisiones.",
-    "Un tsunami con entrada preferente.",
-    "El búnker convertido en apartamento turístico.",
-    "Un simulacro demasiado realista.",
-    "El plan de evacuación en una carpeta perdida.",
-    "Una alarma que solo suena los festivos.",
-    "El único extintor usado como perchero.",
-    "Una conspiración organizada por incompetentes.",
-    "Los reptilianos pagando comunidad.",
-    "Una sociedad secreta con página de contacto.",
-    "El illuminati que no recibe invitaciones.",
-    "Un espía ruso de Murcia.",
-    "El código secreto escrito en la nevera.",
-    "Una reunión clandestina con acta oficial.",
-    "El topo pidiendo teletrabajo.",
-    "Un mensaje cifrado con emojis corporativos.",
-    "El agente doble que cobra dos nóminas.",
-    "Una secta con periodo de prueba.",
-    "El gurú cobrando por iluminación básica.",
-    "Un sacrificio humano mal presupuestado.",
-    "La profecía redactada por un abogado.",
-    "El mesías llegando en patinete.",
-    "Una religión con suscripción mensual.",
-    "El pecado original con gastos de envío.",
-    "Un exorcismo patrocinado por una energética.",
-    "El demonio solicitando cita previa.",
-    "Un milagro sujeto a disponibilidad.",
-    "El cielo con lista de espera.",
-    "El infierno gestionado por una ETT.",
-    "Un ángel con antecedentes.",
-    "El confesionario con grabación de llamadas.",
-    "Un bautizo con control de alcoholemia.",
-    "Una boda oficiada por el algoritmo.",
-    "El novio leyendo los términos y condiciones.",
-    "La novia fugándose con el fotógrafo.",
-    "Un anillo con cláusula de devolución.",
-    "El padrino declarando contra los novios.",
-    "Una despedida de soltero con notario.",
-    "El ramo alcanzando al abogado.",
-    "Una tarta nupcial con pruebas de ADN.",
-    "Los votos matrimoniales escritos por Recursos Humanos.",
-    "Un divorcio amistoso con lanzallamas.",
-    "La custodia compartida del perro imaginario.",
-    "Una pensión alimenticia pagada en criptomonedas.",
-    "El mediador necesitando otro mediador.",
-    "Una familia unida por el mismo abogado.",
-    "El tío que aparece en todos los testamentos.",
-    "La abuela falsificando su propia muerte.",
-    "Un primo segundo con ambiciones dinásticas.",
-    "El cuñado explicando geopolítica.",
-    "Mi padre diciendo «eso se arregla fácil».",
-    "Mi madre entregando pruebas al fiscal.",
-    "Una cena familiar con detector de mentiras.",
-    "El álbum familiar usado como evidencia.",
-    "Un secreto familiar con código de barras.",
-    "Una herencia que exige combate singular.",
-    "El psicólogo llorando antes que el paciente.",
-    "Una sesión de terapia con público.",
-    "El trauma convertido en presentación corporativa.",
-    "Un diagnóstico basado en tu signo zodiacal.",
-    "La autoestima en concurso de acreedores.",
-    "El niño interior solicitando emancipación.",
-    "Un ataque de pánico con música ambiental.",
-    "La depresión haciendo horas extra.",
-    "El terapeuta recomendando mudarse de familia.",
-    "Una baja médica por exceso de realidad.",
-    "El jefe preguntando si morirás antes del viernes.",
-    "Una entrevista grupal en un funeral.",
-    "El currículum delictivo bien maquetado.",
-    "Un contrato temporal hasta la muerte.",
-    "El empleado del mes desaparecido.",
-    "Una reunión que pudo ser una amenaza.",
-    "El café de oficina clasificado como arma química.",
-    "Un ascenso concedido por error.",
-    "El compañero que responde con copia al director.",
-    "Una dinámica de equipo con consecuencias penales.",
-    "El departamento legal entrando en silencio.",
-    "El correo de despedida enviado demasiado pronto.",
-    "Un becario con acceso a nóminas.",
-        "Un cadáver con mejor vida social que yo.",
-    "La mirada de decepción de toda tu familia.",
-    "Intentar sobornar al juez con un cupón caducado.",
-    "Un cura borrando el historial demasiado tarde.",
-    "Un becario encargado del botón nuclear.",
-    "Una orden de alejamiento firmada con un corazón.",
-    "Un funeral patrocinado por una casa de apuestas.",
-    "El silencio incómodo después de decir «era broma».",
-    "Un notario visiblemente borracho.",
-    "Declararse insolvente desde un yate.",
-    "Un desfibrilador con publicidad.",
-    "La última neurona del comité de expertos.",
-    "Una boda sin amor pero con barra libre.",
-    "El olor institucional de una comisaría.",
-    "Un abogado facturando por respirar.",
-    "El primo que siempre conoce a alguien.",
-    "Un cadáver todavía en periodo de prueba.",
-    "Una ambulancia atrapada en zona azul.",
-    "El departamento de Recursos Inhumanos.",
-    "Una misa con patrocinadores.",
-    "El juez buscando tutoriales durante el juicio.",
-    "Una secta con excelente servicio posventa.",
-    "Dos policías discutiendo sobre quién sabe leer.",
-    "Una autopsia retransmitida en horario familiar.",
-    "El becario que respondió «a todos».",
-    "Una herencia compuesta únicamente por deudas.",
-    "El ministro equivocado en el funeral equivocado.",
-    "Un testamento escrito con rencor y Comic Sans.",
-    "Mi historial médico usado como material de comedia.",
-    "Una terapia de pareja pagada por la amante.",
-    "El cadáver levantándose para pedir silencio.",
-    "Una inmobiliaria vendiendo un trastero como loft.",
-    "El banquero explicando humildad desde su helicóptero.",
-    "Una multa por morir fuera de plazo.",
-    "El Papa usando un pinganillo.",
-    "Un quirófano patrocinado por una carnicería.",
-    "Mi madre testificando para la acusación.",
-    "Un seguro que solo cubre buenas noticias.",
-    "El juez diciendo «me suena tu cara».",
-    "Un ataúd con financiación a cuarenta años.",
-    "El comunismo explicado por un terrateniente.",
-    "El capitalismo explicado por un niño explotado.",
-    "Una corona real comprada en liquidación.",
-    "Un independentista perdido en una rotonda.",
-    "Hacienda entrando por la ventana.",
-    "Una comisión para investigar otra comisión.",
-    "El alcalde inaugurando una grieta.",
-    "Un detective alérgico a las pistas.",
-    "Un espía con su nombre bordado.",
-    "Un funeral con control de alcoholemia.",
-    "Una empresa familiar sin familia ni empresa.",
-    "El jefe anunciando resiliencia desde las Maldivas.",
-    "Un psicólogo tomando notas para su novela.",
-    "Una universidad vendiendo esperanza a plazos.",
-    "El profesor que nunca leyó el temario.",
-    "Un examen corregido por inteligencia artificial resentida.",
-    "El rector huyendo con la caja común.",
-    "Una tesis doctoral sobre absolutamente nada.",
-    "Un científico lamiendo la muestra.",
-    "Una vacuna con condiciones de uso.",
-    "El placebo más caro del mercado.",
-    "Una farmacéutica recomendando paciencia.",
-    "Un médico buscando síntomas en internet.",
-    "Una enfermera con cinco cafés y cero esperanza.",
-    "El cirujano diciendo «ups» con voz tranquila.",
-    "Una prótesis con anuncios emergentes.",
-    "El consentimiento informado escrito en latín.",
-    "Un cadáver reclamando la hoja de quejas.",
-    "Una funeraria con programa de fidelización.",
-    "El ataúd ecológico que se desmonta solo.",
-    "Un entierro con aparcacoches.",
-    "Las cenizas equivocadas en la urna correcta.",
-    "Un epitafio patrocinado por el banco.",
-    "El difunto llegando tarde a su funeral.",
-    "Una viuda preguntando por la contraseña.",
-    "El organista tocando reguetón por error.",
-    "Un pésame copiado y pegado.",
-    "Una corona de flores con factura pendiente.",
-    "El seguro declarando el cadáver preexistente.",
-    "Un abogado defensor demasiado sincero.",
-    "El fiscal con una presentación de PowerPoint.",
-    "Un jurado elegido por sorteo de Instagram.",
-    "El testigo protegido dando entrevistas.",
-    "Una confesión con faltas de ortografía.",
-    "El acusado pidiendo una segunda opinión.",
-    "Una sentencia redactada por ChatGPT enfadado.",
-    "El juez cobrando entrada.",
-    "Un juicio patrocinado por una marca de martillos.",
-    "El abogado llamando «estrategia» al pánico.",
-    "Una coartada impresa en una taza.",
-    "El sospechoso explicándolo todo con astrología.",
-    "Un policía infiltrado con uniforme.",
-    "La sirena de policía usada como despertador.",
-    "Una redada anunciada por correo certificado.",
-    "El ladrón denunciando malas condiciones laborales.",
-    "Un interrogatorio con catering vegano.",
-    "Una celda con gastos de comunidad.",
-    "El preso organizando Recursos Humanos.",
-    "Una fuga gestionada por una consultora.",
-    "El alcaide vendiendo entradas.",
-    "Un soborno declarado en la renta.",
-    "Corrupción con sello oficial.",
-    "Una mordida con IVA incluido.",
-    "El maletín equivocado lleno de tuppers.",
-    "Un político prometiendo leer el informe.",
-    "El asesor que asesora no preguntar.",
-    "Una rueda de prensa sin ruedas ni prensa.",
-    "El portavoz sudando en alta definición.",
-    "Un debate electoral moderado por la suegra.",
-    "El candidato saludando a una farola.",
-    "Una campaña financiada con monedas del sofá.",
-    "El ministro de algo que nadie recuerda.",
-    "Una dimisión programada para después del puente.",
-    "El presidente inaugurando su propia estatua.",
-    "Una ley escrita durante una cena.",
-    "El decreto que prohíbe los decretos.",
-    "Un referéndum decidido a piedra, papel o tijera.",
-    "La monarquía descubriendo Bizum.",
-    "Un príncipe con contrato temporal.",
-    "La reina madre en modo incógnito.",
-    "Un discurso real escrito por un becario republicano.",
-    "Un trono con ruedas de oficina.",
-    "La corona guardada en una caja de zapatos.",
-    "El himno nacional tocado con kazoo.",
-    "Un golpe de Estado mal aparcado.",
-    "Una revolución con formulario previo.",
-    "El proletariado premium.",
-    "Un millonario jugando a ser pobre los domingos.",
-    "El capitalismo ofreciendo versión gratuita con anuncios.",
-    "El comunismo con zona VIP.",
-    "Una huelga patrocinada por la empresa.",
-    "El sindicato vendiendo camisetas fabricadas por niños.",
-    "Un banco llorando por sus sentimientos.",
-    "La hipoteca hereditaria.",
-    "Un cajero cobrando entrada.",
-    "El interés compuesto por puro rencor.",
-    "Un fondo buitre con departamento de ternura.",
-    "El director del banco pidiendo monedas.",
-    "Una tarjeta sin límite moral.",
-    "El préstamo que incluye a tus nietos.",
-    "Un economista sorprendido por la economía.",
-    "La inflación comiéndose el ticket.",
-    "Una inmobiliaria midiendo en pasos.",
-    "El piso interior con vistas al interior.",
-    "Una habitación compartida con el propietario.",
-    "El casero viviendo dentro del armario.",
-    "Un alquiler que incluye oxígeno básico.",
-    "El agente inmobiliario diciendo «acogedor» ante un ataúd.",
-    "Una derrama por existir.",
-    "El presidente de la comunidad con guardaespaldas.",
-    "Una reunión de vecinos con casco obligatorio.",
-    "El vecino taladrando por motivos espirituales.",
-    "Una cámara de seguridad apuntando a otra cámara.",
-    "El ascensor que cobra propina.",
-    "Un aeropuerto sin aviones pero con tiendas.",
-    "El control de seguridad revisando tus traumas.",
-    "Una maleta que sabe demasiado.",
-    "El piloto preguntando quién tiene carnet.",
-    "Una aerolínea cobrando por aterrizar.",
-    "El copiloto leyendo las instrucciones.",
-    "Un vuelo con escala en el purgatorio.",
-    "El pasajero aplaudiendo antes del despegue.",
-    "Una turbulencia con patrocinador.",
-    "El equipaje llegando emocionalmente cambiado.",
-    "Un hotel con vistas a otro hotel.",
-    "El minibar hipotecado.",
-    "Un guía turístico perdido.",
-    "El crucero de los divorciados.",
-    "Una excursión organizada por fugitivos.",
-    "El turista que denuncia la cultura local.",
-    "Una luna de miel con abogado incluido.",
-    "Un pasaporte dibujado a mano.",
-    "El mapa del tesoro fiscal.",
-    "Una aduana atendida por tu ex.",
-    "Un influencer descubriendo el trabajo manual.",
-    "Un famoso fingiendo normalidad en cámara.",
-    "El representante hablando por ambas partes.",
-    "Una disculpa pública monetizada.",
-    "Un reality sin cámaras pero con trauma.",
-    "Doce concursantes y un solo baño.",
-    "El programa de talentos sin talento.",
-    "Una entrevista pactada que sale bien por accidente.",
-    "El presentador leyendo el mensaje privado.",
-    "Un micrófono abierto y una carrera cerrada.",
-    "El aplauso enlatado pidiendo aumento.",
-    "Una exclusiva que ya sabía todo el barrio.",
-    "El documental que culpa al montaje.",
-    "Una celebridad adoptando una causa por contrato.",
-    "El paparazzi fotografiándose a sí mismo.",
-    "Un videojuego sobre rellenar formularios.",
-    "El jefe final de Hacienda.",
-    "Una consola confiscada como prueba judicial.",
-    "Un tutorial que termina en divorcio.",
-    "El personaje secundario solicitando vacaciones.",
-    "Una microtransacción para respirar.",
-    "El modo historia de una oposición pública.",
-    "Un servidor caído durante el apocalipsis.",
-    "La inteligencia artificial con complejo de funcionario.",
-    "Un robot sindicalizado.",
-    "El algoritmo recomendando terapia.",
-    "Una contraseña escrita en la lápida.",
-    "El antivirus que exige rescate.",
-    "Una impresora con instinto homicida.",
-    "El cable que solo funciona bajo juramento.",
-    "Una actualización obligatoria durante la operación.",
-    "El dron entregando una citación judicial.",
-    "Un chatbot confesando delitos ajenos.",
-    "La nube perdiendo tus recuerdos.",
-    "Un científico con demasiada confianza.",
-    "El experimento que desarrolla abogado propio.",
-    "Una rata de laboratorio con doctorado.",
-    "El acelerador de partículas en modo ahorro.",
-    "Una fórmula secreta escrita en una servilleta.",
-    "El comité ético de vacaciones.",
-    "Una clonación con pequeños defectos administrativos.",
-    "El paciente cero vendiendo merchandising.",
-    "Un microscopio apuntando al problema equivocado.",
-    "La gravedad solicitando teletrabajo.",
-    "Un meteorito con permiso de obras.",
-    "El fin del mundo aplazado por lluvia.",
-    "Una catástrofe con rueda de prensa.",
-    "El volcán declarado zona de bajas emisiones.",
-    "Un tsunami con entrada preferente.",
-    "El búnker convertido en apartamento turístico.",
-    "Un simulacro demasiado realista.",
-    "El plan de evacuación en una carpeta perdida.",
-    "Una alarma que solo suena los festivos.",
-    "El único extintor usado como perchero.",
-    "Una conspiración organizada por incompetentes.",
-    "Los reptilianos pagando comunidad.",
-    "Una sociedad secreta con página de contacto.",
-    "El illuminati que no recibe invitaciones.",
-    "Un espía ruso de Murcia.",
-    "El código secreto escrito en la nevera.",
-    "Una reunión clandestina con acta oficial.",
-    "El topo pidiendo teletrabajo.",
-    "Un mensaje cifrado con emojis corporativos.",
-    "El agente doble que cobra dos nóminas.",
-    "Una secta con periodo de prueba.",
-    "El gurú cobrando por iluminación básica.",
-    "Un sacrificio humano mal presupuestado.",
-    "La profecía redactada por un abogado.",
-    "El mesías llegando en patinete.",
-    "Una religión con suscripción mensual.",
-    "El pecado original con gastos de envío.",
-    "Un exorcismo patrocinado por una energética.",
-    "El demonio solicitando cita previa.",
-    "Un milagro sujeto a disponibilidad.",
-    "El cielo con lista de espera.",
-    "El infierno gestionado por una ETT.",
-    "Un ángel con antecedentes.",
-    "El confesionario con grabación de llamadas.",
-    "Un bautizo con control de alcoholemia.",
-    "Una boda oficiada por el algoritmo.",
-    "El novio leyendo los términos y condiciones.",
-    "La novia fugándose con el fotógrafo.",
-    "Un anillo con cláusula de devolución.",
-    "El padrino declarando contra los novios.",
-    "Una despedida de soltero con notario.",
-    "El ramo alcanzando al abogado.",
-    "Una tarta nupcial con pruebas de ADN.",
-    "Los votos matrimoniales escritos por Recursos Humanos.",
-    "Un divorcio amistoso con lanzallamas.",
-    "La custodia compartida del perro imaginario.",
-    "Una pensión alimenticia pagada en criptomonedas.",
-    "El mediador necesitando otro mediador.",
-    "Una familia unida por el mismo abogado.",
-    "El tío que aparece en todos los testamentos.",
-    "La abuela falsificando su propia muerte.",
-    "Un primo segundo con ambiciones dinásticas.",
-    "El cuñado explicando geopolítica.",
-    "Mi padre diciendo «eso se arregla fácil».",
-    "Mi madre entregando pruebas al fiscal.",
-    "Una cena familiar con detector de mentiras.",
-    "El álbum familiar usado como evidencia.",
-    "Un secreto familiar con código de barras.",
-    "Una herencia que exige combate singular.",
-    "El psicólogo llorando antes que el paciente.",
-    "Una sesión de terapia con público.",
-    "El trauma convertido en presentación corporativa.",
-    "Un diagnóstico basado en tu signo zodiacal.",
-    "La autoestima en concurso de acreedores.",
-    "El niño interior solicitando emancipación.",
-    "Un ataque de pánico con música ambiental.",
-    "La depresión haciendo horas extra.",
-    "El terapeuta recomendando mudarse de familia.",
-    "Una baja médica por exceso de realidad.",
-    "El jefe preguntando si morirás antes del viernes.",
-    "Una entrevista grupal en un funeral.",
-    "El currículum delictivo bien maquetado.",
-    "Un contrato temporal hasta la muerte.",
-    "El empleado del mes desaparecido.",
-    "Una reunión que pudo ser una amenaza.",
-    "El café de oficina clasificado como arma química.",
-    "Un ascenso concedido por error.",
-    "El compañero que responde con copia al director.",
-    "Una dinámica de equipo con consecuencias penales.",
-    "El departamento legal entrando en silencio.",
-    "El correo de despedida enviado demasiado pronto.",
-    "Un becario con acceso a nóminas."
+    "Un funeral con control de alcoholemia."
   ]
 }
