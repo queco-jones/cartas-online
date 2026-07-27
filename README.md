@@ -67,3 +67,15 @@ El juego también detecta automáticamente el número de `____`, pero la etiquet
 Las cartas creadas se guardan en `custom-cards.json`. Las cartas aprobadas por votación quedan registradas en `flagged-cards.json`, y las eliminadas definitivamente en `deleted-cards.json`.
 
 En Render, configura `DATA_DIR` apuntando a un Persistent Disk para conservar estos archivos tras reinicios o despliegues. Sin disco persistente, Render puede borrar los cambios guardados en tiempo de ejecución.
+
+## Partidas por rondas y generación con IA
+
+Al crear una sala, el anfitrión elige entre 5 y 30 rondas. Tras cada ronda, quienes hayan jugado responden una encuesta rápida. Al terminar se muestra clasificación, podio y estadísticas.
+
+Para activar la creación automática de cartas al finalizar, configura en Render:
+
+- `OPENAI_API_KEY`: tu clave de la API de OpenAI.
+- `OPENAI_MODEL`: opcional; por defecto `gpt-5-mini`.
+- `DATA_DIR`: ruta del disco persistente, por ejemplo `/var/data`.
+
+Las cartas generadas se guardan en `custom-cards.json` y se incorporan inmediatamente al mazo. Las estadísticas anónimas de las últimas 100 partidas se guardan en `game-analytics.json`.
