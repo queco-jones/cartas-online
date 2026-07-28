@@ -599,6 +599,38 @@
     {
       "text": "La policía secreta lleva meses investigando ____.",
       "pick": 1
+    },
+    {
+      "text": "En mi currículum pongo que soy experto en ____.",
+      "pick": 1
+    },
+    {
+      "text": "La asignatura optativa se llama ____ y consiste en ____.",
+      "pick": 2
+    },
+    {
+      "text": "El bar de moda sirve cócteles de ____ con ____.",
+      "pick": 2
+    },
+    {
+      "text": "Para impresionar a la suegra, preparé ____ y acabé descubriendo ____.",
+      "pick": 2
+    },
+    {
+      "text": "En la inmobiliaria viene incluido ____ en el trastero.",
+      "pick": 1
+    },
+    {
+      "text": "Mi nueva terapia consiste en sustituir ____ por ____ y luego ____.",
+      "pick": 3
+    },
+    {
+      "text": "El horóscopo predice ____ para los Libra con tendencias al drama.",
+      "pick": 1
+    },
+    {
+      "text": "La nueva normativa prohíbe llevar ____ en el transporte público.",
+      "pick": 1
     }
   ],
   "white": [
@@ -1151,6 +1183,76 @@
     "El alcalde inaugurando una grieta.",
     "Un detective alérgico a las pistas.",
     "Un espía con su nombre bordado.",
-    "Un funeral con control de alcoholemia."
-  ]
+    "Un funeral con control de alcoholemia.",
+    "Una infección que tararea boleros",
+    "Un bloque de mantequilla confesando crímenes",
+    "Un corazón de plástico que late con resaca",
+    "Mis cojones como pelotas de ping‑pong",
+    "Un abogado cobrando por los silencios",
+    "Una ambulancia con síndrome de claustrofobia",
+    "Pañales llenos de historia",
+    "Un pequeño himno fúnebre para la próstata",
+    "La yaya con síndrome de rockstar",
+    "Una costra con delirios de grandeza",
+    "Un clon de tu ex con mejor gusto",
+    "Un orgasmo con contrato firmado",
+    "Un bote de olor a nostalgia",
+    "Una úlcera que toca la guitarra",
+    "Un funeral improvisado en la cocina",
+    "Un recuerdo que sangra confeti"
+  ],
+  "_aiGenerated": {
+    "black": [
+      {
+        "text": "En mi currículum pongo que soy experto en ____.",
+        "pick": 1
+      },
+      {
+        "text": "La asignatura optativa se llama ____ y consiste en ____.",
+        "pick": 2
+      },
+      {
+        "text": "El bar de moda sirve cócteles de ____ con ____.",
+        "pick": 2
+      },
+      {
+        "text": "Para impresionar a la suegra, preparé ____ y acabé descubriendo ____.",
+        "pick": 2
+      },
+      {
+        "text": "En la inmobiliaria viene incluido ____ en el trastero.",
+        "pick": 1
+      },
+      {
+        "text": "Mi nueva terapia consiste en sustituir ____ por ____ y luego ____.",
+        "pick": 3
+      },
+      {
+        "text": "El horóscopo predice ____ para los Libra con tendencias al drama.",
+        "pick": 1
+      },
+      {
+        "text": "La nueva normativa prohíbe llevar ____ en el transporte público.",
+        "pick": 1
+      }
+    ],
+    "white": [
+      "Una infección que tararea boleros",
+      "Un bloque de mantequilla confesando crímenes",
+      "Un corazón de plástico que late con resaca",
+      "Mis cojones como pelotas de ping‑pong",
+      "Un abogado cobrando por los silencios",
+      "Una ambulancia con síndrome de claustrofobia",
+      "Pañales llenos de historia",
+      "Un pequeño himno fúnebre para la próstata",
+      "La yaya con síndrome de rockstar",
+      "Una costra con delirios de grandeza",
+      "Un clon de tu ex con mejor gusto",
+      "Un orgasmo con contrato firmado",
+      "Un bote de olor a nostalgia",
+      "Una úlcera que toca la guitarra",
+      "Un funeral improvisado en la cocina",
+      "Un recuerdo que sangra confeti"
+    ]
+  }
 }
